@@ -9,7 +9,7 @@ export const getRestaurants = () => dispatch => {
 	axios
 		.get('')
 		.then(res => {
-			// dispatch({ type: FETCH_RESTAURANTS_SUCCESS. payload: res.data})
+			dispatch({ type: FETCH_RESTAURANTS_SUCCESS, payload: res.data})
 		})
 		.catch(err => dispatch({ type: FETCH_RESTAURANTS_FAIL, payload: err }));
 };
