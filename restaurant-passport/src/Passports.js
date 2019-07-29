@@ -52,7 +52,7 @@ const Passports = () => {
           return (
             <div className="passport">
               <h3>{passport.city}</h3>
-              <p>{passport.restaurantCount}</p>
+              <p>🧭 {passport.restaurantCount}</p>
             </div>
           );
         })}
