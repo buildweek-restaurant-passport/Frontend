@@ -1,19 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Header,
   Grid,
   Checkbox,
   Search,
-  Label
+  Label, 
+  Icon
 } from "semantic-ui-react";
 import _ from "lodash";
+import RestaurantInfo from './restaurant-components/restaurant-info'
 
 const Passport = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
   const [value, setValue] = useState("");
+  
+  //checking state of stamped , if true  checkmark will be added to component
+
+  const [stamped, setStamped] = useState(false);
+
+  // add remove restaurant to passport
+  
+  useEffect(() => {
+    console.log('in use effect ', stamped)
+  },[stamped]);
+  
+  
+  // const updateRestStatus = () => {
+  //   setStamped(!stamped)
+  //   console.log(stamped);
+  // }
 
   const resultRenderer = ({ business_name }) => (
     <Label content={business_name} />
@@ -46,7 +64,7 @@ const Passport = () => {
     const toggle = () => setChecked(!checked)
     //need to fix this
 
-
+  
 
   return (
     <Container style={{ marginTop: "3em" }}>
@@ -70,15 +88,20 @@ const Passport = () => {
           </Grid.Column>
         </Grid>
       </Header>
-
+      
       <div className="min-h-screen flex items-center justify-center">
-        <Grid centered columns={cols}>
-          {restaurants.map(rest => (
-            <Grid.Column key={rest.business_id.toString()}>
+        <Grid centered columns={4}>
+          {restaurants.map((rest) => {
+
+            rest = {...rest, restStampedStatus : stamped}
+
+            return(
+            <Grid.Column key={rest.business_id}>
               <div className=" rounded overflow-hidden shadow-lg">
                 <div className="px-6 py-4">
                   <div className="font-bold text-xl mb-2">
                     {rest.business_name}
+                    {rest.stampedStatus && <Icon name = "check" style ={{fontSize: "10px", margin: 'auto 0', paddingLeft:'10px', color : '##49beb7'}}/> || ' ' }
                   </div>
                   <p className="text-gray-700 text-base">{`${rest.business_city}, ${rest.business_state}`}</p>
                   <p className="text-gray-700 text-base">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
@@ -90,10 +113,12 @@ const Passport = () => {
                   <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-red-200">
                     Dont Visit
                   </p>
+                  
+                  <RestaurantInfo {...rest} key = {rest.business_id} setStamped = {setStamped}/>
                 </div>
               </div>
             </Grid.Column>
-          ))}
+          )})}
         </Grid>
       </div>
     </Container>
