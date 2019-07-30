@@ -7,6 +7,8 @@ import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/reducer';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import 'semantic-ui-css/semantic.min.css';
+import './css/tailwind.css';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 

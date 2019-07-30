@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
-import RestaurantList from './restaurant-components/restauraunt-maker'
+import Passport from './components/Passport';
+import Passports from './Passports';
 
 function App() {
-	return <div className='App' >
+	return (
+    <div className='App'>
+    <Passports />
+    <Passport />
+    </div>
 
-	</div>
-
+    );
 }
 
 export default App;
