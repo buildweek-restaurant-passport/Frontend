@@ -43,7 +43,7 @@ const Passport = () => {
   };
     const [checked, setChecked] = useState(true)
     const [cols, setCols] = useState(4)
-    const toggle = () => setChecked(false)
+    const toggle = () => setChecked(!checked)
     //need to fix this
 
 
