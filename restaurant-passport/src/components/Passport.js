@@ -18,12 +18,17 @@ const Passport = () => {
   const resultRenderer = ({ business_name }) => (
     <Label content={business_name} />
   );
-  const handleResultSelect = (e, { result }) => setValue(result.business_name);
+  const handleResultSelect = (e, { result }) => {
+    setValue(result.business_name)
+    setRestaurants(restaurants.filter(restaurant => restaurant.business_id === result.business_id))
+
+  };
   const handleSearchChange = (e, { value }) => {
     setIsLoading(true);
     setValue(value);
     setTimeout(() => {
       if (value.length < 1) {
+        setRestaurants(restaurantList)
         setIsLoading(false);
         setResults([]);
         setValue("");
@@ -37,6 +42,7 @@ const Passport = () => {
   };
     const [checked, setChecked] = useState(true)
     const toggle = () => setChecked(false)
+    //need to fix this
 
 
 
