@@ -21,6 +21,7 @@ const Passport = () => {
   const handleResultSelect = (e, { result }) => {
     setValue(result.business_name)
     setRestaurants(restaurants.filter(restaurant => restaurant.business_id === result.business_id))
+    setCols(1)
 
   };
   const handleSearchChange = (e, { value }) => {
@@ -41,6 +42,7 @@ const Passport = () => {
     }, 300);
   };
     const [checked, setChecked] = useState(true)
+    const [cols, setCols] = useState(4)
     const toggle = () => setChecked(false)
     //need to fix this
 
@@ -63,14 +65,14 @@ const Passport = () => {
               resultRenderer={resultRenderer}
             />
           </Grid.Column>
-          <Grid.Column width={2}>
+          <Grid.Column width={4}>
           <Checkbox label='Show Visited' onChange={toggle} checked={checked}  />
           </Grid.Column>
         </Grid>
       </Header>
 
       <div className="min-h-screen flex items-center justify-center">
-        <Grid centered columns={4}>
+        <Grid centered columns={cols}>
           {restaurants.map(rest => (
             <Grid.Column key={rest.business_id.toString()}>
               <div className=" rounded overflow-hidden shadow-lg">
