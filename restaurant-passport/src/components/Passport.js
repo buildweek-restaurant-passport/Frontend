@@ -5,19 +5,26 @@ import {
   Grid,
   Checkbox,
   Search,
-  Label
+  Label, 
+  Icon
 } from "semantic-ui-react";
 import _ from "lodash";
+import RestaurantInfo from './restaurant-components/restaurant-info'
 
 const Passport = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
   const [value, setValue] = useState("");
+  
+  //checking state of stamped , if true  checkmark will be added to component
+
+  const[stamped, setStamped] = useState(false)
 
   const resultRenderer = ({ business_name }) => (
     <Label content={business_name} />
   );
+
   const handleResultSelect = (e, { result }) => setValue(result.business_name);
   const handleSearchChange = (e, { value }) => {
     setIsLoading(true);
@@ -65,12 +72,13 @@ const Passport = () => {
 
       <div className="min-h-screen flex items-center justify-center">
         <Grid centered columns={4}>
-          {restaurants.map(rest => (
+          {restaurants.map((rest) => (
             <Grid.Column key={rest.business_id.toString()}>
               <div className=" rounded overflow-hidden shadow-lg">
                 <div className="px-6 py-4">
                   <div className="font-bold text-xl mb-2">
                     {rest.business_name}
+                    {stamped && <Icon name = "check" style ={{fontSize: "10px", margin: 'auto 0', paddingLeft:'10px', color : '##49beb7'}}/> || ' ' }
                   </div>
                   <p className="text-gray-700 text-base">{`${rest.business_city}, ${rest.business_state}`}</p>
                   <p className="text-gray-700 text-base">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
@@ -82,6 +90,7 @@ const Passport = () => {
                   <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-red-200">
                     Dont Visit
                   </p>
+                  <RestaurantInfo {...rest} key = {rest.business_id}/>
                 </div>
               </div>
             </Grid.Column>
