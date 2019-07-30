@@ -5,50 +5,57 @@ import {
   Grid,
   Checkbox,
   Search,
-  Label, 
+  Label,
   Icon,
-  Modal
+  Modal,
+  Button
 } from "semantic-ui-react";
 import _ from "lodash";
-import RestaurantInfo from './restaurant-components/restaurant-info'
+import RestaurantInfo from "./restaurant-components/restaurant-info";
+
 
 const Passport = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
   const [value, setValue] = useState("");
-  
   //checking state of stamped , if true  checkmark will be added to component
-
-  const [stamped, setStamped] = useState(false);
+  const [stamped, setStamped] = useState(true);
+  const [checked, setChecked] = useState(true);
+  const [cols, setCols] = useState(3);
+  const toggle = () => setChecked(!checked);  
 
   // add remove restaurant to passport
-  
+
   useEffect(() => {
-    console.log('in use effect ', stamped)
-  },[stamped]);
-  
-  
+    console.log("in use effect ", stamped);
+  }, [stamped]);
+
   // const updateRestStatus = () => {
   //   setStamped(!stamped)
   //   console.log(stamped);
   // }
 
+
+
   const resultRenderer = ({ business_name }) => (
     <Label content={business_name} />
   );
   const handleResultSelect = (e, { result }) => {
-    setValue(result.business_name)
-    setRestaurants(restaurants.filter(restaurant => restaurant.business_id === result.business_id))
-    setCols(1)
-
+    setValue(result.business_name);
+    setRestaurants(
+      restaurants.filter(
+        restaurant => restaurant.business_id === result.business_id
+      )
+    );
+    setCols(1);
   };
   const handleSearchChange = (e, { value }) => {
     setIsLoading(true);
     setValue(value);
     setTimeout(() => {
       if (value.length < 1) {
-        setRestaurants(restaurantList)
+        setRestaurants(restaurantList);
         setIsLoading(false);
         setResults([]);
         setValue("");
@@ -60,12 +67,7 @@ const Passport = () => {
       setResults(_.filter(restaurants, isMatch));
     }, 300);
   };
-    const [checked, setChecked] = useState(true)
-    const [cols, setCols] = useState(4)
-    const toggle = () => setChecked(!checked)
-    //need to fix this
 
-  
 
   return (
     <Container style={{ marginTop: "3em" }}>
@@ -85,51 +87,73 @@ const Passport = () => {
             />
           </Grid.Column>
           <Grid.Column width={4}>
-          <Checkbox label='Show Visited' onChange={toggle} checked={checked}  />
+            <Checkbox
+              label="Show Visited"
+              onChange={toggle}
+              checked={checked}
+            />
           </Grid.Column>
         </Grid>
       </Header>
-      
       <div className="min-h-screen flex items-center justify-center">
-        <Grid centered columns={4}>
-          {restaurants.map((rest) => {
-
-            rest = {...rest, restStampedStatus : stamped}
-
-            return(
-              <Modal 
-              style = {{width: '40%' }}
-              closeIcon
-              trigger={
-                           <Grid.Column key={rest.business_id}>
-                             <div className=" rounded overflow-hidden shadow-lg">
-                               <div className="px-6 py-4">
-                                 <div className="font-bold text-xl mb-2">
-                                   {rest.business_name}
-                                   {rest.stampedStatus && <Icon name = "check" style ={{fontSize: "10px", margin: 'auto 0', paddingLeft:'10px', color : '##49beb7'}}/> || ' ' }
-                                 </div>
-                                 <p className="text-gray-700 text-base">{`${rest.business_city}, ${rest.business_state}`}</p>
-                                 <p className="text-gray-700 text-base">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
-                               </div>
-                               <div className="px-6 py-4">
-                                 {checked && <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-green-200">
-                                                     Visit
-                                 </p>}
-                                 <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-red-200">
-                                   Dont Visit
-                                 </p>
-                                 
-                                 
-                               </div>
-                             </div>
-                           </Grid.Column>
-
-                           
-                           } >
-                          <RestaurantInfo {...rest} key = {rest.business_id} setStamped = {setStamped} />
-                           </Modal>
-                           
-          )})}
+        <Grid centered columns={cols}>
+          {restaurants.map(rest => {
+            rest = { ...rest, restStampedStatus: stamped };
+            return (
+              <Modal
+              key={rest.business_id}
+                style={{ width: "40%" }}
+                closeIcon
+                trigger={<Button
+                   basic color='teal'
+                 as='column'
+                 >
+                  
+                  
+                    <div className=" rounded overflow-hidden ">
+                      <div className="px-6 py-4">
+                        <div className="font-bold text-xl mb-2">
+                          {rest.business_name}
+                          {(rest.stampedStatus && (
+                            <Icon
+                              name="check"
+                              style={{
+                                fontSize: "10px",
+                                margin: "auto 0",
+                                paddingLeft: "10px",
+                                color: "##49beb7"
+                              }}
+                            />
+                          )) ||
+                            " "}
+                        </div>
+                        <p className="text-gray-700 text-base">{`${rest.business_city}, ${rest.business_state}`}</p>
+                        <p className="text-gray-700 text-base">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
+                      </div>
+                      <div className="px-6 py-4">
+                        {checked && (
+                          <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-green-200">
+                            Visit
+                          </p>
+                        )}
+                        <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-red-200">
+                          Dont Visit
+                        </p>
+                      </div>
+                    </div>
+                  
+                  
+                  </Button>
+                }
+              >
+                <RestaurantInfo
+                  {...rest}
+                  key={rest.business_id}
+                  setStamped={setStamped}
+                />
+              </Modal>
+            );
+          })}
         </Grid>
       </div>
     </Container>
