@@ -6,7 +6,8 @@ import {
   Checkbox,
   Search,
   Label, 
-  Icon
+  Icon,
+  Modal
 } from "semantic-ui-react";
 import _ from "lodash";
 import RestaurantInfo from './restaurant-components/restaurant-info'
@@ -96,28 +97,38 @@ const Passport = () => {
             rest = {...rest, restStampedStatus : stamped}
 
             return(
-            <Grid.Column key={rest.business_id}>
-              <div className=" rounded overflow-hidden shadow-lg">
-                <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">
-                    {rest.business_name}
-                    {rest.stampedStatus && <Icon name = "check" style ={{fontSize: "10px", margin: 'auto 0', paddingLeft:'10px', color : '##49beb7'}}/> || ' ' }
-                  </div>
-                  <p className="text-gray-700 text-base">{`${rest.business_city}, ${rest.business_state}`}</p>
-                  <p className="text-gray-700 text-base">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
-                </div>
-                <div className="px-6 py-4">
-                  {checked && <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-green-200">
-                                      Visit
-                  </p>}
-                  <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-red-200">
-                    Dont Visit
-                  </p>
-                  
-                  <RestaurantInfo {...rest} key = {rest.business_id} setStamped = {setStamped}/>
-                </div>
-              </div>
-            </Grid.Column>
+              <Modal 
+              style = {{width: '40%' }}
+              closeIcon
+              trigger={
+                           <Grid.Column key={rest.business_id}>
+                             <div className=" rounded overflow-hidden shadow-lg">
+                               <div className="px-6 py-4">
+                                 <div className="font-bold text-xl mb-2">
+                                   {rest.business_name}
+                                   {rest.stampedStatus && <Icon name = "check" style ={{fontSize: "10px", margin: 'auto 0', paddingLeft:'10px', color : '##49beb7'}}/> || ' ' }
+                                 </div>
+                                 <p className="text-gray-700 text-base">{`${rest.business_city}, ${rest.business_state}`}</p>
+                                 <p className="text-gray-700 text-base">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
+                               </div>
+                               <div className="px-6 py-4">
+                                 {checked && <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-green-200">
+                                                     Visit
+                                 </p>}
+                                 <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-red-200">
+                                   Dont Visit
+                                 </p>
+                                 
+                                 
+                               </div>
+                             </div>
+                           </Grid.Column>
+
+                           
+                           } >
+                          <RestaurantInfo {...rest} key = {rest.business_id} setStamped = {setStamped} />
+                           </Modal>
+                           
           )})}
         </Grid>
       </div>
