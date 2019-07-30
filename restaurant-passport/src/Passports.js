@@ -39,7 +39,6 @@ const Passports = () => {
 
   return (
     <div>
-      {console.log(passports)}
       <h2>Passports</h2>
       <h3>Current: {dummyData.find((passport) => passport.id === activePassportId)}</h3>
       <div className="Passports">

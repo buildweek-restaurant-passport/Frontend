@@ -1,7 +1,8 @@
-import React from "react";
+import React,{ useState, useEffect }  from "react";
 import { Card, Button, Icon, Header, Modal } from "semantic-ui-react";
 
-const RestaurantInfo = props => {
+const RestaurantInfo = (props, setStamped) => {
+
 
     const { business_name } = props
     const { type } = props
@@ -9,8 +10,13 @@ const RestaurantInfo = props => {
     const { inspection_type } = props
     const { violation_description } = props
     const { inspection_score } = props
+    const { restStampedStatus } = props
+    
 
-    console.log(props)
+    useEffect(() => {
+        console.log('in use effect ', restStampedStatus)
+      },[restStampedStatus]);
+      
     return (
         <div className="restaurant-info">
             
@@ -38,11 +44,11 @@ const RestaurantInfo = props => {
 
                 <Modal.Actions style = {{display:'flex', alignContent : 'center', justifyContent : 'center', flexDirection : 'column'}}>
 
-                    <Button primary style={{ backgroundColor: "#49beb7", color: '#f1f1f1', width: '75%', margin: '8px auto' }}>
+                    <Button primary style={{ backgroundColor: "#49beb7", color: '#f1f1f1', width: '75%', margin: '8px auto' }} >
                         <Icon name='remove' />Add To Passport
                     </Button>
 
-                    <Button secondary style = {{ backgroundColor: "#085f63", color: '#f1f1f1', width: '75%', margin: '8px auto' }}>
+                    <Button secondary style = {{ backgroundColor: "#085f63", color: '#f1f1f1', width: '75%', margin: '8px auto'  }} >
                         <Icon name='checkmark' /> Remove From Passport
                     </Button>
 
