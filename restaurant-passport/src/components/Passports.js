@@ -52,6 +52,7 @@ const Passports = () => {
       <h2>Passports</h2>
       {
         activePassportId !== undefined
+          && dummyData.find((passport) => passport.id === activePassportId)
           && <h3>Selected: {
             dummyData.find((passport) => passport.id === activePassportId).city
           }</h3>
