@@ -18,12 +18,12 @@ const Register = props => {
 				console.log(values);
 				actions.setSubmitting(true);
 				axios
-					.post('http://localhost:3000/register', values)
+					.post('http://localhost:3000', values)
 					.then(res => {
 						localStorage.setItem('token', res.data.token);
 						console.log(props);
 					})
-					.then(() => props.history.push('restricted/data'))
+					.then(() => props.history.push('passports'))
 					.catch(err => console.log(err));
 			}}
 			validationSchema={() =>
