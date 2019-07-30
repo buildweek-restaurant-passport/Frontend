@@ -13,7 +13,6 @@ import {
 import _ from "lodash";
 import RestaurantInfo from "./restaurant-components/restaurant-info";
 
-
 const Passport = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,8 +21,8 @@ const Passport = () => {
   //checking state of stamped , if true  checkmark will be added to component
   const [stamped, setStamped] = useState(true);
   const [checked, setChecked] = useState(true);
-  const [cols, setCols] = useState(3);
-  const toggle = () => setChecked(!checked);  
+  const [cols, setCols] = useState(4);
+  const toggle = () => setChecked(!checked);
 
   // add remove restaurant to passport
 
@@ -35,8 +34,6 @@ const Passport = () => {
   //   setStamped(!stamped)
   //   console.log(stamped);
   // }
-
-
 
   const resultRenderer = ({ business_name }) => (
     <Label content={business_name} />
@@ -67,7 +64,6 @@ const Passport = () => {
       setResults(_.filter(restaurants, isMatch));
     }, 300);
   };
-
 
   return (
     <Container style={{ marginTop: "3em" }}>
@@ -101,15 +97,17 @@ const Passport = () => {
             rest = { ...rest, restStampedStatus: stamped };
             return (
               <Modal
-              key={rest.business_id}
+                key={rest.business_id}
                 style={{ width: "40%" }}
                 closeIcon
-                trigger={<Button
-                   basic color='teal'
-                 as='column'
-                 >
-                  
-                  
+                trigger={
+                  <Button 
+                  basic 
+                  //color="teal" 
+                  className='column basic' 
+                  as='div'
+
+                  >
                     <div className=" rounded overflow-hidden ">
                       <div className="px-6 py-4">
                         <div className="font-bold text-xl mb-2">
@@ -141,8 +139,6 @@ const Passport = () => {
                         </p>
                       </div>
                     </div>
-                  
-                  
                   </Button>
                 }
               >
