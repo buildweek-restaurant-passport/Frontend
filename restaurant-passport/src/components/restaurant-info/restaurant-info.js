@@ -1,7 +1,7 @@
 import React,{ useState, useEffect }  from "react";
 import { Card, Button, Icon, Header, Modal } from "semantic-ui-react";
 
-const RestaurantInfo = (props, setStamped) => {
+const RestaurantInfo = (props, stamped) => {
 
 
     const { business_name } = props
@@ -10,12 +10,8 @@ const RestaurantInfo = (props, setStamped) => {
     const { inspection_type } = props
     const { violation_description } = props
     const { inspection_score } = props
-    const { restStampedStatus } = props
     
 
-    useEffect(() => {
-        console.log('in use effect ', restStampedStatus)
-      },[restStampedStatus]);
       
     return (
         <div className="restaurant-info">
@@ -26,8 +22,9 @@ const RestaurantInfo = (props, setStamped) => {
 
                     <Card style={{ margin: '10px auto', padding: '8px', boxShadow: '0px 0px 3px #085f63', width: '85%' }}>
                         <Card.Content>
-                            <Card.Header>{business_name}
-                                <Icon name="check" style={{ fontSize: "10px", margin: 'auto 0', paddingLeft: '10px', color: '##49beb7' }}></Icon>
+                            <Card.Header>
+                            {business_name}
+                            {stamped && <Icon name = "check" style ={{fontSize: "10px", margin: 'auto 0', paddingLeft:'10px', color : '##49beb7'}}/> || ' ' }
                             </Card.Header>
                             <Card.Meta>
                             <p>Address : {business_address}</p>

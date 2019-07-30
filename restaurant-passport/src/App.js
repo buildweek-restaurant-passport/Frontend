@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Passport from './components/Passport';
+import './components/passport-restaurants/passport.scss'
+import Passport from './components/passport-restaurants/Passport.js';
 import Passports from './Passports';
 import Register from './components/Register';
 import Login from './components/Login';
