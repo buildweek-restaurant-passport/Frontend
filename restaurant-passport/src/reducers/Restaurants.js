@@ -1,4 +1,4 @@
-import { FETCH_RESTAURANTS_START, FETCH_RESTAURANTS_SUCCESS, FETCH_RESTAURANTS_FAIL } from './actions';
+import { FETCH_RESTAURANTS_START, FETCH_RESTAURANTS_SUCCESS, FETCH_RESTAURANTS_FAIL } from '../actions/Restaurants';
 
 const initialState = {
 	restaurants : [],
@@ -6,7 +6,7 @@ const initialState = {
 	error       : '',
 };
 
-function reducer(state = initialState, action) {
+function RestaurantData(state = initialState, action) {
 	switch (action.type) {
 		case FETCH_RESTAURANTS_START:
 			return {
@@ -30,4 +30,4 @@ function reducer(state = initialState, action) {
 			return state;
 	}
 }
-export default reducer;
+export default RestaurantData;
