@@ -4,17 +4,20 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './reducers/reducer';
+import rootReducer from './reducers/Restaurants';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import 'semantic-ui-css/semantic.min.css';
 import './css/tailwind.css';
+import { BrowserRouter } from 'react-router-dom';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
 	</Provider>,
 	document.getElementById('root'),
 );
