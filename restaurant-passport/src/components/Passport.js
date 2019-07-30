@@ -18,12 +18,18 @@ const Passport = () => {
   const resultRenderer = ({ business_name }) => (
     <Label content={business_name} />
   );
-  const handleResultSelect = (e, { result }) => setValue(result.business_name);
+  const handleResultSelect = (e, { result }) => {
+    setValue(result.business_name)
+    setRestaurants(restaurants.filter(restaurant => restaurant.business_id === result.business_id))
+    setCols(1)
+
+  };
   const handleSearchChange = (e, { value }) => {
     setIsLoading(true);
     setValue(value);
     setTimeout(() => {
       if (value.length < 1) {
+        setRestaurants(restaurantList)
         setIsLoading(false);
         setResults([]);
         setValue("");
@@ -36,7 +42,9 @@ const Passport = () => {
     }, 300);
   };
     const [checked, setChecked] = useState(true)
-    const toggle = () => setChecked(false)
+    const [cols, setCols] = useState(4)
+    const toggle = () => setChecked(!checked)
+    //need to fix this
 
 
 
@@ -57,14 +65,14 @@ const Passport = () => {
               resultRenderer={resultRenderer}
             />
           </Grid.Column>
-          <Grid.Column width={2}>
+          <Grid.Column width={4}>
           <Checkbox label='Show Visited' onChange={toggle} checked={checked}  />
           </Grid.Column>
         </Grid>
       </Header>
 
       <div className="min-h-screen flex items-center justify-center">
-        <Grid centered columns={4}>
+        <Grid centered columns={cols}>
           {restaurants.map(rest => (
             <Grid.Column key={rest.business_id.toString()}>
               <div className=" rounded overflow-hidden shadow-lg">
