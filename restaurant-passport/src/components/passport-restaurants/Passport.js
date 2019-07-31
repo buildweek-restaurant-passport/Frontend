@@ -7,6 +7,7 @@ import {
   Grid,
   Checkbox
 } from "semantic-ui-react";
+import axios from 'axios';
 
 import RestaurantModal from './restaurantModal/restaurantModal'
 import SearchBar from "./searchBar/searchBar";
@@ -17,7 +18,8 @@ const Passport = props => {
     props.getRestaurants();
   };
 
-  const [restaurants, setRestaurants] = useState(restaurantList);
+  // const [restaurants, setRestaurants] = useState(restaurantList);
+  const [restaurants, setRestaurants] = useState();
   //checking state of stamped , if true  checkmark will be added to component
   const [stamped, setStamped] = useState(true);
   const [checked, setChecked] = useState(true);
@@ -32,7 +34,20 @@ const Passport = props => {
 
   const toggle = () => setChecked(!checked);
 
+	const retrieveRestaurants = () => {
+		(async () => {
+			try {
+				const repsonse = await axios.get('https://restaurant-app-appi.herokuapp.com/api/v1/restaurants');
 
+        setRestaurants(repsonse.data.body);
+        console.log(repsonse.data.body);
+        
+			} catch (error) {
+				console.error(error);
+			}
+		})();
+	};
+	useEffect(retrieveRestaurants, []);
 
   // add remove restaurant to passport
 
@@ -41,7 +56,7 @@ const Passport = props => {
   }, [stamped]);
 
   
-
+  return (<></>);
   return (
     <Container style={{ marginTop: "3em" }} className="content-container">
       <div className="header">
