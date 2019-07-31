@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import './components/passport-restaurants/passport.scss'
 import Passport from './components/passport-restaurants/Passport.js';
-import Passports from './Passports';
+import Passports from './components/Passports';
 import Register from './components/Register';
 import Login from './components/Login';
 import { Route , Switch} from 'react-router-dom';
