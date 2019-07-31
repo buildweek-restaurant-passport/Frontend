@@ -24,6 +24,14 @@ const Passport = () => {
   const [stamped, setStamped] = useState(true);
   const [checked, setChecked] = useState(true);
   const [cols, setCols] = useState(4);
+
+  const [hovered, setHovered] = useState(false)
+
+
+  const displayButtons = (event) => {}
+  const hideButtons = (event) => {}
+
+
   const toggle = () => setChecked(!checked);
 
 
@@ -95,9 +103,9 @@ const Passport = () => {
       <div className="min-h-screen flex items-center justify-center restaurant-container">
         <Grid centered columns={cols}>
           {restaurants.map(rest => {
-            rest = { ...rest, restStampedStatus: stamped };
+            rest = { ...rest, restStampedStatus: stamped}
             return (
-              <div className="px-6 py-4">
+              <div className="px-6 py-4" onMouseEnter = {displayButtons} onMouseLeave= {displayButtons}>
 
               <Modal
                 key={rest.business_id}
@@ -128,7 +136,7 @@ const Passport = () => {
                             <button className="add"
                             onClick={handleClick}
                             >
-                              <Icon name = 'plus' style ={{color: '#085f63' , fontSize:'25px'}} className='addBtn'/>
+                            <Icon name = 'plus' style ={{color: '#085f63' , fontSize:'25px'}} className='addBtn'/>
                             </button>
                           )}
                           {checked && (
