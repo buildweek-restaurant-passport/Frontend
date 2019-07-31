@@ -112,18 +112,7 @@ const Register = props => {
 								width='4'
 							/>
 						</div>
-						<div>
-							{props.touched.city && props.errors.city && <h3>{props.errors.city}</h3>}
-							<Field
-								placeholder='City'
-								label='city'
-								name='city'
-								id='city'
-								type='text'
-								onChange={props.handleChange}
-								width='4'
-							/>
-						</div>
+
 						<div>
 							{props.touched.email && props.errors.email && <h3>{props.errors.email}</h3>}
 							<Field
