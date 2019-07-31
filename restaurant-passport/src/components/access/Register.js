@@ -25,7 +25,7 @@ const Register = props => {
 						localStorage.setItem('token', res.data.token);
 						console.log(props);
 					})
-					.then(() => props.history.push('https://restaurant-app-appi.herokuapp.com/api/v1/passports'))
+					.then(() => props.history.push('/passports'))
 					.catch(err => console.log(err));
 			}}
 			validationSchema={() =>
@@ -112,7 +112,7 @@ const Register = props => {
 								width='4'
 							/>
 						</div>
-						 {/* <div>
+						{/* <div>
 							{props.touched.city && props.errors.city && <h3>{props.errors.city}</h3>}
 							<Field
 								placeholder='City'
