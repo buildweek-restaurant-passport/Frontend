@@ -8,10 +8,24 @@ import {
   Label,
   Icon,
   Modal,
-  Button
+  Button,
+  Rating
 } from "semantic-ui-react";
 import _ from "lodash";
 import RestaurantInfo from "./restaurant-components/restaurant-info";
+
+const ButtonExampleGroupIcon = () => (
+  <Button.Group icon>
+    <Button>
+      <Icon name="add" />
+    </Button>
+    <Button>
+      <Icon name="remove" />
+    </Button>
+  </Button.Group>
+);
+
+const VisitIcon = () => <Rating maxRating={1} clearable />;
 
 const Passport = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
@@ -23,6 +37,7 @@ const Passport = () => {
   const [checked, setChecked] = useState(true);
   const [cols, setCols] = useState(4);
   const toggle = () => setChecked(!checked);
+
 
   // add remove restaurant to passport
 
@@ -101,12 +116,11 @@ const Passport = () => {
                 style={{ width: "40%" }}
                 closeIcon
                 trigger={
-                  <Button 
-                  basic 
-                  //color="teal" 
-                  className='column basic' 
-                  as='div'
-
+                  <Button
+                    basic
+                    //color="teal"
+                    className="column basic"
+                    as="div"
                   >
                     <div className=" rounded overflow-hidden ">
                       <div className="px-6 py-4">
