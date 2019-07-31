@@ -15,7 +15,8 @@
 				rgba(245, 225, 218, .5) 60%,
 				rgba(73, 190, 183, .5) 90%
 			),
-			url(../../assests/images/maarten-van-den-heuvel-gZXx8lKAb7Y-unsplash.jpg) no-repeat center bottom fixed;
+			url(https://mynewsla.com/wp-content/uploads/2015/08/restaurant-691397_1280.jpg) no-repeat center bottom
+				fixed;
 		background-size: cover;
 		.city-name {
 			padding-top: 90px;
@@ -26,34 +27,34 @@
 	}
 }
 
-#login-header  {
-    margin-right: 30px;
-    color: #085F63;
+#login-header {
+	margin-right: 30px;
+	color: #085f63;
 }
-#register-header  {
-    color: #085F63;
+#register-header {
+	color: #085f63;
 }
 #top {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;    
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 input#password {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 input#username {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 input#firstName {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 input#lastName {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 input#email {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 button.ui.button {
-    margin-top: 10px;
-    font-size: 1.2rem;
+	margin-top: 10px;
+	font-size: 1.2rem;
 }
