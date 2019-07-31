@@ -12,9 +12,8 @@ import {
   Rating
 } from "semantic-ui-react";
 import _ from "lodash";
-
 import RestaurantInfo from '../restaurant-info/restaurant-info'
-
+//import SearchBar from './searchBar/searchBar';
 
 const Passport = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
@@ -28,7 +27,11 @@ const Passport = () => {
   const toggle = () => setChecked(!checked);
 
 
-
+  const handleClick = e => {
+    e.stopPropagation();
+    e.preventDefault();
+    console.log('hello')
+  }
   // add remove restaurant to passport
 
   useEffect(() => {
@@ -61,6 +64,7 @@ const Passport = () => {
         setIsLoading(false);
         setResults([]);
         setValue("");
+        setCols(4);
       }
 
       const re = new RegExp(_.escapeRegExp(value), "i");
@@ -69,12 +73,6 @@ const Passport = () => {
       setResults(_.filter(restaurants, isMatch));
     }, 300);
   };
-
-
-    //need to fix this
-
-  
-
 
   return (
     <Container style={{ marginTop: "3em" }} className = 'content-container'>
@@ -97,11 +95,13 @@ const Passport = () => {
         </div>
         </div>
       
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center restaurant-container">
         <Grid centered columns={cols}>
           {restaurants.map(rest => {
             rest = { ...rest, restStampedStatus: stamped };
             return (
+              <div className="px-6 py-4">
+
               <Modal
                 key={rest.business_id}
                 style={{ width: "40%" }}
@@ -109,11 +109,10 @@ const Passport = () => {
                 trigger={
                   <Button
                     basic
-                    //color="teal"
-                    className="column basic"
+                    className="column basic restaurant-card"
                     as="div"
                   >
-                    <div className=" rounded overflow-hidden ">
+                    <div className=" rounded  ">
                       <div className="px-6 py-4">
                         <div className="font-bold text-xl mb-2">
                           {rest.business_name}
@@ -133,9 +132,10 @@ const Passport = () => {
                         <p className="text-gray-700 text-base">{`${rest.business_city}, ${rest.business_state}`}</p>
                         <p className="text-gray-700 text-base">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
                       </div>
-                      <div className="px-6 py-4">
                         {checked && (
-                          <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-green-200">
+                          <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-green-200"
+                          onClick={handleClick}
+                          >
                             Visit
                           </p>
                         )}
@@ -143,8 +143,9 @@ const Passport = () => {
                           Dont Visit
                         </p>
                       </div>
-                    </div>
+                    
                   </Button>
+                  
                 }
               >
                 <RestaurantInfo
@@ -153,6 +154,7 @@ const Passport = () => {
                   setStamped={setStamped}
                 />
               </Modal>
+              </div>
             );
           })}
         </Grid>

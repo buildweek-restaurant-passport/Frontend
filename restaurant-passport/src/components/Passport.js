@@ -59,6 +59,7 @@ const Passport = () => {
         setIsLoading(false);
         setResults([]);
         setValue("");
+        setCols(4);
       }
 
       const re = new RegExp(_.escapeRegExp(value), "i");
