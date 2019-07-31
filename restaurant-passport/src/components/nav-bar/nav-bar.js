@@ -22,7 +22,7 @@ const NavBar = (props) => {
             {!isOnLandingPage()
                 && <div className = 'nav-links' style = {{width:'44%', color: '#085f63', fontSize:'20px', display:'flex', justifyContent: 'space-between', fontWeight: '800'}}>
                     {props.location.pathname !== '/passports' && <Link to ='/passports'>My Passport</Link>}
-                    <Link to ='/restaurants'>Restaurants</Link> 
+                    {props.location.pathname !== '/restaurants' && <Link to ='/restaurants'>Restaurants</Link>}
                     <Link to ='/'>Log Out</Link>
                 </div>
             }

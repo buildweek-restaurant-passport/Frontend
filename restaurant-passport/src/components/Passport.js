@@ -1,48 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { getRestaurants } from '../../actions/Restaurants'; //redux
-import { connect } from 'react-redux'; //redux
 import {
   Container,
   Header,
   Grid,
-  Checkbox
+  Checkbox,
+  Search,
+  Label,
+  Icon,
+  Modal,
+  Button,
+  Rating
 } from "semantic-ui-react";
-import axios from 'axios';
+import _ from "lodash";
+import RestaurantInfo from "./restaurant-components/restaurant-info";
 
-import RestaurantModal from '../passport-restaurants/restaurantModal/restaurantModal'
-import SearchBar from "../passport-restaurants/searchBar/searchBar";
 
-const Passport = props => {
-
-  const getRestaurants = e => {
-    e.preventDefault();
-    props.getRestaurants();
-  };
-
-  // const [restaurants, setRestaurants] = useState(restaurantList);
-  const [restaurants, setRestaurants] = useState();
+const Passport = () => {
+  const [restaurants, setRestaurants] = useState(restaurantList);
+  const [isLoading, setIsLoading] = useState(false);
+  const [results, setResults] = useState([]);
+  const [value, setValue] = useState("");
   //checking state of stamped , if true  checkmark will be added to component
   const [stamped, setStamped] = useState(true);
   const [checked, setChecked] = useState(true);
   const [cols, setCols] = useState(4);
-
-
   const toggle = () => setChecked(!checked);
 
-	const retrieveRestaurants = () => {
-		(async () => {
-			try {
-				const repsonse = await axios.get('https://restaurant-app-appi.herokuapp.com/api/v1/restaurants');
-
-        setRestaurants(repsonse.data.body);
-        console.log(repsonse.data.body);
-        
-			} catch (error) {
-				console.error(error);
-			}
-		})();
-	};
-	useEffect(retrieveRestaurants, []);
 
   // add remove restaurant to passport
 
@@ -50,59 +33,135 @@ const Passport = props => {
     console.log("in use effect ", stamped);
   }, [stamped]);
 
+  // const updateRestStatus = () => {
+  //   setStamped(!stamped)
+  //   console.log(stamped);
+  // }
+
+  const resultRenderer = ({ business_name }) => (
+    <Label content={business_name} />
+  );
+  const handleResultSelect = (e, { result }) => {
+    setValue(result.business_name);
+    setRestaurants(
+      restaurants.filter(
+        restaurant => restaurant.business_id === result.business_id
+      )
+    );
+    setCols(1);
+  };
+  const handleSearchChange = (e, { value }) => {
+    setIsLoading(true);
+    setValue(value);
+    setTimeout(() => {
+      if (value.length < 1) {
+        setRestaurants(restaurantList);
+        setIsLoading(false);
+        setResults([]);
+        setValue("");
+        setCols(4);
+      }
+
+      const re = new RegExp(_.escapeRegExp(value), "i");
+      const isMatch = result => re.test(result.business_name);
+      setIsLoading(false);
+      setResults(_.filter(restaurants, isMatch));
+    }, 300);
+  };
 
   return (
-    <>
-      {restaurants === undefined
-        ? <h1>Loading...</h1>
-        : <Container style={{ marginTop: "3em" }} className="content-container">
-          <div className="header">
-            <Header as="h1" className="city-name">
-              Restaurants
-            </Header>
-            <div className="lower-header-content">
-              <SearchBar
-                restaurants={restaurants}
-                setRestaurants={setRestaurants}
-                setCols={setCols}
-                restaurantList={restaurantList}
-              />
-              <Checkbox
-                label="Show Visited"
-                onChange={toggle}
-                checked={checked}
-                className="checkbox"
-              />
-            </div>
-          </div>
-
-          <div className="min-h-screen flex items-center justify-center restaurant-container">
-            <Grid centered columns={cols}>
-
-
-              {restaurants.map(rest => 
-                <RestaurantModal rest={rest} key={rest.business_id} />
-              )}
-            </Grid>
-          </div>
-        </Container>
-      }
-    </>
+    <Container style={{ marginTop: "3em" }}>
+      <Header as="h1">Passport</Header>
+      <Header as="h2" dividing>
+        <Grid>
+          <Grid.Column width={6}>
+            <Search
+              loading={isLoading}
+              onResultSelect={handleResultSelect}
+              onSearchChange={_.debounce(handleSearchChange, 500, {
+                leading: true
+              })}
+              results={results}
+              value={value}
+              resultRenderer={resultRenderer}
+            />
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <Checkbox
+              label="Show Visited"
+              onChange={toggle}
+              checked={checked}
+            />
+          </Grid.Column>
+        </Grid>
+      </Header>
+      <div className="min-h-screen flex items-center justify-center">
+        <Grid centered columns={cols}>
+          {restaurants.map(rest => {
+            rest = { ...rest, restStampedStatus: stamped };
+            return (
+              <Modal
+                key={rest.business_id}
+                style={{ width: "40%" }}
+                closeIcon
+                trigger={
+                  <Button
+                    basic
+                    //color="teal"
+                    className="column basic"
+                    as="div"
+                  >
+                    <div className=" rounded overflow-hidden ">
+                      <div className="px-6 py-4">
+                        <div className="font-bold text-xl mb-2">
+                          {rest.business_name}
+                          {(rest.stampedStatus && (
+                            <Icon
+                              name="check"
+                              style={{
+                                fontSize: "10px",
+                                margin: "auto 0",
+                                paddingLeft: "10px",
+                                color: "##49beb7"
+                              }}
+                            />
+                          )) ||
+                            " "}
+                        </div>
+                        <p className="text-gray-700 text-base">{`${rest.business_city}, ${rest.business_state}`}</p>
+                        <p className="text-gray-700 text-base">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
+                      </div>
+                      <div className="px-6 py-4">
+                        {checked && (
+                          <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-green-200">
+                            Visit
+                          </p>
+                        )}
+                        <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-red-200">
+                          Dont Visit
+                        </p>
+                      </div>
+                    </div>
+                  </Button>
+                }
+              >
+                <RestaurantInfo
+                  {...rest}
+                  key={rest.business_id}
+                  setStamped={setStamped}
+                />
+              </Modal>
+            );
+          })}
+        </Grid>
+      </div>
+    </Container>
   );
 };
 
-
-
 export default Passport;
 
-//Redux setup
-// const mapStateToProps = state => ({
-//   restaurants     : state.restaurants,
-//   error      : state.error,
-//   isFetching : state.isFetching,
-// });
-
-// export default connect(mapStateToProps, { getRestaurants })(Passport);
+//<img className="tw-w-full" src={props.photo.url} alt="" />
 
 const restaurantList = [
   {
