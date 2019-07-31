@@ -102,8 +102,8 @@ const Passport = () => {
         </div>
         </div>
       
-      <div className="min-h-screen flex items-center justify-center">
-        <Grid centered padded columns={cols}>
+      <div className="min-h-screen flex items-center justify-center restaurant-container">
+        <Grid centered columns={cols}>
           {restaurants.map(rest => {
             rest = { ...rest, restStampedStatus: stamped };
             return (
@@ -116,8 +116,7 @@ const Passport = () => {
                 trigger={
                   <Button
                     basic
-                    //color="teal"
-                    className="column basic"
+                    className="column basic restaurant-card"
                     as="div"
                   >
                     <div className=" rounded  ">
@@ -150,8 +149,8 @@ const Passport = () => {
                         <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-red-200">
                           Dont Visit
                         </p>
-                      
-                    </div>
+                      </div>
+                    
                   </Button>
                   
                 }
