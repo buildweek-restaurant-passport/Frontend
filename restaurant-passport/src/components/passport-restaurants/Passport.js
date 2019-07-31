@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from "react";
+import { getRestaurants } from '../../actions/Restaurants'; //redux
+import { connect } from 'react-redux'; //redux
 import {
   Container,
   Header,
   Grid,
-  Checkbox,
-  Search,
-  Label,
-  Icon,
-  Modal,
-  Button,
-  Rating
+  Checkbox
 } from "semantic-ui-react";
-import _ from "lodash";
-import RestaurantInfo from '../restaurant-info/restaurant-info'
-//import SearchBar from './searchBar/searchBar';
 
-const Passport = () => {
+import RestaurantModal from './restaurantModal/restaurantModal'
+import SearchBar from "./searchBar/searchBar";
+
+const Passport = props => {
+  const getRestaurants = e => {
+    e.preventDefault();
+    props.getRestaurants();
+  };
+
   const [restaurants, setRestaurants] = useState(restaurantList);
-  const [isLoading, setIsLoading] = useState(false);
-  const [results, setResults] = useState([]);
-  const [value, setValue] = useState("");
   //checking state of stamped , if true  checkmark will be added to component
   const [stamped, setStamped] = useState(true);
   const [checked, setChecked] = useState(true);
@@ -27,11 +25,6 @@ const Passport = () => {
   const toggle = () => setChecked(!checked);
 
 
-  const handleClick = e => {
-    e.stopPropagation();
-    e.preventDefault();
-    console.log('hello')
-  }
   // add remove restaurant to passport
 
   useEffect(() => {
@@ -43,129 +36,52 @@ const Passport = () => {
   //   console.log(stamped);
   // }
 
-  const resultRenderer = ({ business_name }) => (
-    <Label content={business_name} />
-  );
-  const handleResultSelect = (e, { result }) => {
-    setValue(result.business_name);
-    setRestaurants(
-      restaurants.filter(
-        restaurant => restaurant.business_id === result.business_id
-      )
-    );
-    setCols(1);
-  };
-  const handleSearchChange = (e, { value }) => {
-    setIsLoading(true);
-    setValue(value);
-    setTimeout(() => {
-      if (value.length < 1) {
-        setRestaurants(restaurantList);
-        setIsLoading(false);
-        setResults([]);
-        setValue("");
-        setCols(4);
-      }
-
-      const re = new RegExp(_.escapeRegExp(value), "i");
-      const isMatch = result => re.test(result.business_name);
-      setIsLoading(false);
-      setResults(_.filter(restaurants, isMatch));
-    }, 300);
-  };
-
   return (
-    <Container style={{ marginTop: "3em" }} className = 'content-container'>
-    <div className = 'header'>
-      <Header as="h1"  className = 'city-name'>San Francisco Passport</Header>
-        <div className= 'lower-header-content'>
-            <Search
-              className= 'search-bar-header'
-              loading={isLoading}
-              onResultSelect={handleResultSelect}
-              onSearchChange={_.debounce(handleSearchChange, 500, {
-                leading: true
-              })}
-              results={results}
-              value={value}
-              resultRenderer={resultRenderer}
-            />
-            <Checkbox label='Show Visited' onChange={toggle} checked={checked}   className = 'checkbox'/>
+    <Container style={{ marginTop: "3em" }} className="content-container">
+      <div className="header">
+        <Header as="h1" className="city-name">
+          San Francisco Passport
+        </Header>
+        <div className="lower-header-content">
+          <SearchBar
+            restaurants={restaurants}
+            setRestaurants={setRestaurants}
+            setCols={setCols}
+            restaurantList={restaurantList}
+          />
+          <Checkbox
+            label="Show Visited"
+            onChange={toggle}
+            checked={checked}
+            className="checkbox"
+          />
+        </div>
+      </div>
 
-        </div>
-        </div>
-      
       <div className="min-h-screen flex items-center justify-center restaurant-container">
         <Grid centered columns={cols}>
-          {restaurants.map(rest => {
-            rest = { ...rest, restStampedStatus: stamped };
-            return (
-              <div className="px-6 py-4">
-
-              <Modal
-                key={rest.business_id}
-                style={{ width: "40%" }}
-                closeIcon
-                trigger={
-                  <Button
-                    basic
-                    className="column basic restaurant-card"
-                    as="div"
-                  >
-                    <div className=" rounded  ">
-                      <div className="px-6 py-4">
-                        <div className="font-bold text-xl mb-2">
-                          {rest.business_name}
-                          {(rest.stampedStatus && (
-                            <Icon
-                              name="check"
-                              style={{
-                                fontSize: "10px",
-                                margin: "auto 0",
-                                paddingLeft: "10px",
-                                color: "##49beb7"
-                              }}
-                            />
-                          )) ||
-                            " "}
-                        </div>
-                        <p className="text-gray-700 text-base">{`${rest.business_city}, ${rest.business_state}`}</p>
-                        <p className="text-gray-700 text-base">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
-                      </div>
-                        {checked && (
-                          <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-green-200"
-                          onClick={handleClick}
-                          >
-                            Visit
-                          </p>
-                        )}
-                        <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-red-200">
-                          Dont Visit
-                        </p>
-                      </div>
-                    
-                  </Button>
-                  
-                }
-              >
-                <RestaurantInfo
-                  {...rest}
-                  key={rest.business_id}
-                  setStamped={setStamped}
-                />
-              </Modal>
-              </div>
-            );
-          })}
+          {restaurants.map(rest => 
+            <RestaurantModal rest={rest} key={rest.business_id} />
+          )}
+ 
         </Grid>
       </div>
     </Container>
   );
 };
 
+
+
 export default Passport;
 
-//<img className="tw-w-full" src={props.photo.url} alt="" />
+//Redux setup
+// const mapStateToProps = state => ({
+//   restaurants     : state.restaurants,
+//   error      : state.error,
+//   isFetching : state.isFetching,
+// });
+
+// export default connect(mapStateToProps, { getRestaurants })(Passport);
 
 const restaurantList = [
   {
