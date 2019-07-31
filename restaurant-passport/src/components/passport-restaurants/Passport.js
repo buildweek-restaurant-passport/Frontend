@@ -32,16 +32,13 @@ const Passport = () => {
     e.preventDefault();
     console.log('hello')
   }
-  // add remove restaurant to passport
+  
 
   useEffect(() => {
     console.log("in use effect ", stamped);
   }, [stamped]);
 
-  // const updateRestStatus = () => {
-  //   setStamped(!stamped)
-  //   console.log(stamped);
-  // }
+  
 
   const resultRenderer = ({ business_name }) => (
     <Label content={business_name} />
@@ -112,10 +109,7 @@ const Passport = () => {
                     className="column basic restaurant-card"
                     as="div"
                   >
-                    <div className=" rounded  ">
-                      <div className="px-6 py-4">
-                        <div className="font-bold text-xl mb-2">
-                          {rest.business_name}
+                          <p className='rest-details rest-name'>{rest.business_name}</p>
                           {(rest.stampedStatus && (
                             <Icon
                               name="check"
@@ -126,24 +120,25 @@ const Passport = () => {
                                 color: "##49beb7"
                               }}
                             />
-                          )) ||
-                            " "}
+                          )) || " "}
+                        <p className="rest-details">{`${rest.business_city}, ${rest.business_state}`}</p>
+                        <p className="rest-details">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
+                        <div className = 'add-remove-buttons'>
+                          {checked && (
+                            <button className="add"
+                            onClick={handleClick}
+                            >
+                              <Icon name = 'plus' style ={{color: '#085f63' , fontSize:'25px'}} className='addBtn'/>
+                            </button>
+                          )}
+                          {checked && (
+                            <button className="remove"
+                            onClick={handleClick}
+                            >
+                            <Icon name = 'minus' style ={{color: '#FF2400' , fontSize:'25px'}} className='removeBtn'/>
+                            </button>
+                          )}
                         </div>
-                        <p className="text-gray-700 text-base">{`${rest.business_city}, ${rest.business_state}`}</p>
-                        <p className="text-gray-700 text-base">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
-                      </div>
-                        {checked && (
-                          <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-green-200"
-                          onClick={handleClick}
-                          >
-                            Visit
-                          </p>
-                        )}
-                        <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-red-200">
-                          Dont Visit
-                        </p>
-                      </div>
-                    
                   </Button>
                   
                 }
