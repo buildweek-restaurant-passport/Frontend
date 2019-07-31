@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Passport from './components/Passport';
-import Passports from './Passports';
+import Passports from './components/Passports';
 import Register from './components/Register';
 import Login from './components/Login';
 import { Route } from 'react-router-dom';
