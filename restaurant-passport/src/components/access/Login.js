@@ -20,7 +20,7 @@ const Login = props => {
 						localStorage.setItem('token', res.data.token);
 						console.log(props);
 					})
-					.then(() => props.history.push('https://restaurant-app-appi.herokuapp.com/api/v1/passports'))
+					.then(() => props.history.push('/passports'))
 					.catch(err => console.log(err));
 			}}
 			validationSchema={() =>
