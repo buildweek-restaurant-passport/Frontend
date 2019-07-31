@@ -1,15 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  Container,
-  Header,
-  Grid,
-  Checkbox,
-  Search,
-  Label, 
-  Icon
-} from "semantic-ui-react";
+// import {
+//   Container,
+//   Header,
+//   Grid,
+//   Checkbox,
+//   Search,
+//   Label, 
+//   Icon
+// } from "semantic-ui-react";
 
 import useLocalStorage from "../authentication/useLocalStorage";
 
@@ -27,7 +27,7 @@ const dummyData  = [
 ];
 
 const Passports = () => {
-  const [activePassportId, setActivePassportId] = useLocalStorage('passport');
+  const [activePassportId, setActivePassportId] = useLocalStorage('passportId');
   const [passports, setPassports] = useState();
 
   const retrievePassports = () => {
