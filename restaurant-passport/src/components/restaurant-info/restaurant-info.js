@@ -1,4 +1,4 @@
-import React,{ useState, useEffect }  from "react";
+import React  from "react";
 import { Card, Button, Icon, Header, Modal } from "semantic-ui-react";
 
 const RestaurantInfo = (props, stamped) => {
@@ -17,7 +17,7 @@ const RestaurantInfo = (props, stamped) => {
     return (
         
             
-            <>
+            <div>
                 <Header content='Restaurant Info' />
                 <Modal.Content>
 
@@ -52,7 +52,7 @@ const RestaurantInfo = (props, stamped) => {
 
                 </Modal.Actions>
 
-            </>
+            </div>
         
     );
 

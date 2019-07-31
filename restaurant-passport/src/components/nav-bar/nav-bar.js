@@ -20,7 +20,7 @@ const NavBar = (props) => {
                     <img src = {logo} alt = 'restaurant passport logo' style = {{height:'100%', width: 'auto'}}></img>
                 </div>
             {!isOnLandingPage()
-                && <div className = 'nav-links' style = {{width:'44%', color: '#085f63', fontSize:'20px', display:'flex', justifyContent: 'space-between', fontWeight: '800',}}>
+                && <div className = 'nav-links' style = {{width:'44%', color: '#085f63', fontSize:'20px', display:'flex', justifyContent: 'space-between', fontWeight: '800'}}>
                     {props.location.pathname !== '/passports' && <Link to ='/passports'>My Passport</Link>}
                     <Link to ='/restaurants'>Restaurants</Link> 
                     <Link to ='/'>Log Out</Link>
@@ -28,6 +28,9 @@ const NavBar = (props) => {
             }
         </div>
     )
+
+
+    
 }
 
 export default NavBar

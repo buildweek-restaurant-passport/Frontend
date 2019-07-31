@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from "react";
-import {
-  Icon,
-  Modal,
-  Button,
-  Checkbox
-} from "semantic-ui-react";
+import React, { useState} from "react";
+import { Icon, Modal, Button } from "semantic-ui-react";
 import _ from "lodash";
 import RestaurantInfo from "../../restaurant-info/restaurant-info";
-
 
 const RestaurantModal = props => {
   const [checked, setChecked] = useState(true);
   const [stamped, setStamped] = useState(true);
-  const displayButtons = (event) => {}
-  const hideButtons = (event) => {}
+
+
+
 
     const handleClick = e => {
     e.stopPropagation();
@@ -21,9 +16,8 @@ const RestaurantModal = props => {
     console.log("hello");
   };
 
-//const rest = { ...rest, restStampedStatus: stamped };
 return (
-              <div className="px-6 py-4" onMouseEnter = {displayButtons} onMouseLeave= {displayButtons}>
+              <div className="px-6 py-4">
                 <Modal
                   key={props.rest.business_id}
                   style={{ width: "40%" }}

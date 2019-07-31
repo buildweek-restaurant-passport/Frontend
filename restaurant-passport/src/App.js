@@ -2,10 +2,10 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import './App.css';
-import './components/passport-restaurants/passport.scss';
+import './components/restaurant-list/passport.scss';
 import './components/access/access.scss';
 
-import Passport from './components/passport-restaurants/Passport.js';
+import Passport from './components/restaurant-list/Passport.js';
 import Passports from './components/Passports';
 import Register from './components/access/Register';
 import Login from './components/access/Login';

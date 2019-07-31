@@ -8,10 +8,11 @@ import {
   Checkbox
 } from "semantic-ui-react";
 
-import RestaurantModal from './restaurantModal/restaurantModal'
-import SearchBar from "./searchBar/searchBar";
+import RestaurantModal from '../passport-restaurants/restaurantModal/restaurantModal'
+import SearchBar from "../passport-restaurants/searchBar/searchBar";
 
 const Passport = props => {
+
   const getRestaurants = e => {
     e.preventDefault();
     props.getRestaurants();
@@ -23,16 +24,8 @@ const Passport = props => {
   const [checked, setChecked] = useState(true);
   const [cols, setCols] = useState(4);
 
-  const [hovered, setHovered] = useState(false)
-
-
-  const displayButtons = (event) => {}
-  const hideButtons = (event) => {}
-
 
   const toggle = () => setChecked(!checked);
-
-
 
   // add remove restaurant to passport
 
