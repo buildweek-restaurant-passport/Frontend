@@ -29,6 +29,8 @@ const RestaurantModal = props => {
             className="column basic restaurant-card"
             as="div"
           >
+
+          
           <p className='rest-details rest-name'>{props.rest.name}</p>
                   {(props.rest.stampedStatus && (
                     <Icon
