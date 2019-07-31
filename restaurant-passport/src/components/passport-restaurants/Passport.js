@@ -22,7 +22,16 @@ const Passport = props => {
   const [stamped, setStamped] = useState(true);
   const [checked, setChecked] = useState(true);
   const [cols, setCols] = useState(4);
+
+  const [hovered, setHovered] = useState(false)
+
+
+  const displayButtons = (event) => {}
+  const hideButtons = (event) => {}
+
+
   const toggle = () => setChecked(!checked);
+
 
 
   // add remove restaurant to passport
@@ -31,10 +40,7 @@ const Passport = props => {
     console.log("in use effect ", stamped);
   }, [stamped]);
 
-  // const updateRestStatus = () => {
-  //   setStamped(!stamped)
-  //   console.log(stamped);
-  // }
+  
 
   return (
     <Container style={{ marginTop: "3em" }} className="content-container">
@@ -60,10 +66,68 @@ const Passport = props => {
 
       <div className="min-h-screen flex items-center justify-center restaurant-container">
         <Grid centered columns={cols}>
+
+          {restaurants.map(rest => {
+            rest = { ...rest, restStampedStatus: stamped}
+            return (
+              <div className="px-6 py-4" onMouseEnter = {displayButtons} onMouseLeave= {displayButtons}>
+
+              <Modal
+                key={rest.business_id}
+                style={{ width: "40%" }}
+                closeIcon
+                trigger={
+                  <Button
+                    basic
+                    className="column basic restaurant-card"
+                    as="div"
+                  >
+                          <p className='rest-details rest-name'>{rest.business_name}</p>
+                          {(rest.stampedStatus && (
+                            <Icon
+                              name="check"
+                              style={{
+                                fontSize: "10px",
+                                margin: "auto 0",
+                                paddingLeft: "10px",
+                                color: "##49beb7"
+                              }}
+                            />
+                          )) || " "}
+                        <p className="rest-details">{`${rest.business_city}, ${rest.business_state}`}</p>
+                        <p className="rest-details">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
+                        <div className = 'add-remove-buttons'>
+                          {checked && (
+                            <button className="add"
+                            onClick={handleClick}
+                            >
+                            <Icon name = 'plus' style ={{color: '#085f63' , fontSize:'25px'}} className='addBtn'/>
+                            </button>
+                          )}
+                          {checked && (
+                            <button className="remove"
+                            onClick={handleClick}
+                            >
+                            <Icon name = 'minus' style ={{color: '#FF2400' , fontSize:'25px'}} className='removeBtn'/>
+                            </button>
+                          )}
+                        </div>
+                  </Button>
+                  
+                }
+              >
+                <RestaurantInfo
+                  {...rest}
+                  key={rest.business_id}
+                  setStamped={setStamped}
+                />
+              </Modal>
+              </div>
+            );
+          })}
           {restaurants.map(rest => 
             <RestaurantModal rest={rest} key={rest.business_id} />
           )}
- 
         </Grid>
       </div>
     </Container>
