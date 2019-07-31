@@ -9,7 +9,7 @@ import {
   Icon
 } from "semantic-ui-react";
 import _ from "lodash";
-import RestaurantInfo from './restaurant-components/restaurant-info'
+import RestaurantInfo from '../restaurant-info/restaurant-info'
 
 const Passport = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
@@ -19,7 +19,7 @@ const Passport = () => {
   
   //checking state of stamped , if true  checkmark will be added to component
 
-  const [stamped, setStamped] = useState(false);
+  const [stamped, setStamped] = useState(true);
 
   // add remove restaurant to passport
   
@@ -60,6 +60,7 @@ const Passport = () => {
     }, 300);
   };
     const [checked, setChecked] = useState(true)
+
     const [cols, setCols] = useState(4)
     const toggle = () => setChecked(!checked)
     //need to fix this
@@ -67,12 +68,12 @@ const Passport = () => {
   
 
   return (
-    <Container style={{ marginTop: "3em" }}>
-      <Header as="h1">San Francisco Passport</Header>
-      <Header as="h2" dividing>
-        <Grid>
-          <Grid.Column width={6}>
+    <Container style={{ marginTop: "3em" }} className = 'content-container'>
+    <div className = 'header'>
+      <Header as="h1"  className = 'city-name'>San Francisco Passport</Header>
+        <div className= 'lower-header-content'>
             <Search
+              className= 'search-bar-header'
               loading={isLoading}
               onResultSelect={handleResultSelect}
               onSearchChange={_.debounce(handleSearchChange, 500, {
@@ -82,18 +83,12 @@ const Passport = () => {
               value={value}
               resultRenderer={resultRenderer}
             />
-          </Grid.Column>
-          <Grid.Column width={4}>
-          <Checkbox label='Show Visited' onChange={toggle} checked={checked}  />
-          </Grid.Column>
-        </Grid>
-      </Header>
-      
-      <div className="min-h-screen flex items-center justify-center">
+          <Checkbox label='Show Visited' onChange={toggle} checked={checked}   className = 'checkbox'/>
+          </div>
+      </div>
+      <div className="min-h-screen flex items-center justify-center restaurant-container">
         <Grid centered columns={4}>
           {restaurants.map((rest) => {
-
-            rest = {...rest, restStampedStatus : stamped}
 
             return(
             <Grid.Column key={rest.business_id}>
@@ -101,7 +96,7 @@ const Passport = () => {
                 <div className="px-6 py-4">
                   <div className="font-bold text-xl mb-2">
                     {rest.business_name}
-                    {rest.stampedStatus && <Icon name = "check" style ={{fontSize: "10px", margin: 'auto 0', paddingLeft:'10px', color : '##49beb7'}}/> || ' ' }
+                    {stamped && <Icon name = "check" style ={{fontSize: "10px", margin: 'auto 0', paddingLeft:'10px', color : '##49beb7'}}/> || ' ' }
                   </div>
                   <p className="text-gray-700 text-base">{`${rest.business_city}, ${rest.business_state}`}</p>
                   <p className="text-gray-700 text-base">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
@@ -114,7 +109,8 @@ const Passport = () => {
                     Dont Visit
                   </p>
                   
-                  <RestaurantInfo {...rest} key = {rest.business_id} setStamped = {setStamped}/>
+                  <RestaurantInfo {...rest} key = {rest.business_id} stamped = {stamped}/>
+                  
                 </div>
               </div>
             </Grid.Column>
