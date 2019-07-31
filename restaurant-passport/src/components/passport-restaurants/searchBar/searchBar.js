@@ -37,7 +37,7 @@ const SearchBar = props => {
     setValue(value);
     setTimeout(() => {
       if (value.length < 1) {
-        props.setRestaurants(props.restaurantList);
+        props.setRestaurants(props.restaurants);
         setIsLoading(false);
         setResults([]);
         setValue("");

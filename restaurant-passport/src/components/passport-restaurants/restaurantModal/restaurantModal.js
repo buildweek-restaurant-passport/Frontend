@@ -21,7 +21,6 @@ const RestaurantModal = props => {
     console.log("hello");
   };
 
-  //const rest = { ...rest, restStampedStatus: stamped };
   return (
     <div className="px-6 py-4" onMouseEnter = {displayButtons} onMouseLeave= {displayButtons}>
       <Modal
@@ -65,6 +64,7 @@ const RestaurantModal = props => {
                   </button>
                 )}
               </div>
+
 
 
           </Button>
