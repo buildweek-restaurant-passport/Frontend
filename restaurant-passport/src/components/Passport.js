@@ -14,7 +14,6 @@ import {
 import _ from "lodash";
 import RestaurantInfo from "./restaurant-components/restaurant-info";
 
-const VisitIcon = () => <Rating maxRating={1} clearable />;
 
 const Passport = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
