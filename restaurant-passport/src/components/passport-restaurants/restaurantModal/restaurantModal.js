@@ -25,7 +25,7 @@ const RestaurantModal = props => {
 return (
               <div className="px-6 py-4" onMouseEnter = {displayButtons} onMouseLeave= {displayButtons}>
                 <Modal
-                  key={props.rest.business_id}
+                  key={props.rest.id}
                   style={{ width: "40%" }}
                   closeIcon
                   trigger={
@@ -34,7 +34,7 @@ return (
                       className="column basic restaurant-card"
                       as="div"
                     >
-                    <p className='rest-details rest-name'>{props.rest.business_name}</p>
+                    <p className='rest-details rest-name'>{props.rest.name}</p>
                             {(props.rest.stampedStatus && (
                               <Icon
                                 name="check"

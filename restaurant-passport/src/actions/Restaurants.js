@@ -7,9 +7,11 @@ export const FETCH_RESTAURANTS_FAIL = 'FETCH_RESTAURANTS_FAIL';
 export const getRestaurants = () => dispatch => {
 	dispatch({ type: FETCH_RESTAURANTS_START });
 	axios
-		.get('')
+		.get('https://restaurant-app-appi.herokuapp.com/api/v1/restaurants')
 		.then(res => {
 			dispatch({ type: FETCH_RESTAURANTS_SUCCESS, payload: res.data });
 		})
 		.catch(err => dispatch({ type: FETCH_RESTAURANTS_FAIL, payload: err }));
 };
+
+
