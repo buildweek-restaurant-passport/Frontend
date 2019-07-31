@@ -14,17 +14,6 @@ import {
 import _ from "lodash";
 import RestaurantInfo from "./restaurant-components/restaurant-info";
 
-const ButtonExampleGroupIcon = () => (
-  <Button.Group icon>
-    <Button>
-      <Icon name="add" />
-    </Button>
-    <Button>
-      <Icon name="remove" />
-    </Button>
-  </Button.Group>
-);
-
 const VisitIcon = () => <Rating maxRating={1} clearable />;
 
 const Passport = () => {
@@ -142,7 +131,6 @@ const Passport = () => {
                         <p className="text-gray-700 text-base">{`${rest.business_city}, ${rest.business_state}`}</p>
                         <p className="text-gray-700 text-base">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
                       </div>
-                      <VisitIcon onRate={handleChange} />
                       <div className="px-6 py-4">
                         {checked && (
                           <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-green-200">
