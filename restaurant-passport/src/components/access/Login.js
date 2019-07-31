@@ -14,12 +14,12 @@ const Login = props => {
 				console.log(values);
 				actions.setSubmitting(true);
 				axios
-					.post('http://localhost:3000/Login', values)
+					.post('https://restaurant-app-appi.herokuapp.com/api/v1/auth/login', values)
 					.then(res => {
 						localStorage.setItem('token', res.data.token);
 						console.log(props);
 					})
-					.then(() => props.history.push('passports'))
+					.then(() => props.history.push('https://restaurant-app-appi.herokuapp.com/api/v1/passports'))
 					.catch(err => console.log(err));
 			}}
 			validationSchema={() =>
