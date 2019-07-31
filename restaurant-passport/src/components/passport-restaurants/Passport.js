@@ -55,40 +55,44 @@ const Passport = props => {
     console.log("in use effect ", stamped);
   }, [stamped]);
 
-  
-  return (<></>);
+
   return (
-    <Container style={{ marginTop: "3em" }} className="content-container">
-      <div className="header">
-        <Header as="h1" className="city-name">
-          Restaurants
-        </Header>
-        <div className="lower-header-content">
-          <SearchBar
-            restaurants={restaurants}
-            setRestaurants={setRestaurants}
-            setCols={setCols}
-            restaurantList={restaurantList}
-          />
-          <Checkbox
-            label="Show Visited"
-            onChange={toggle}
-            checked={checked}
-            className="checkbox"
-          />
-        </div>
-      </div>
+    <>
+      {restaurants === undefined
+        ? <h1>Loading...</h1>
+        : <Container style={{ marginTop: "3em" }} className="content-container">
+          <div className="header">
+            <Header as="h1" className="city-name">
+              Restaurants
+            </Header>
+            <div className="lower-header-content">
+              <SearchBar
+                restaurants={restaurants}
+                setRestaurants={setRestaurants}
+                setCols={setCols}
+                restaurantList={restaurantList}
+              />
+              <Checkbox
+                label="Show Visited"
+                onChange={toggle}
+                checked={checked}
+                className="checkbox"
+              />
+            </div>
+          </div>
 
-      <div className="min-h-screen flex items-center justify-center restaurant-container">
-        <Grid centered columns={cols}>
+          <div className="min-h-screen flex items-center justify-center restaurant-container">
+            <Grid centered columns={cols}>
 
 
-          {restaurants.map(rest => 
-            <RestaurantModal rest={rest} key={rest.business_id} />
-          )}
-        </Grid>
-      </div>
-    </Container>
+              {restaurants.map(rest => 
+                <RestaurantModal rest={rest} key={rest.business_id} />
+              )}
+            </Grid>
+          </div>
+        </Container>
+      }
+    </>
   );
 };
 
