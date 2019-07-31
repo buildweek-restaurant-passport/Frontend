@@ -45,10 +45,10 @@ const Register = props => {
 						.min(2, 'Your name must be at least two characters long.')
 						.max(30, 'Your name must be less than 30 characters.')
 						.required('Your last name is required'),
-					city      : Yup.string()
-						.min(2, 'Your city must be at least two characters long.')
-						.max(30, 'Your city must be less than 30 characters.')
-						.required('Your city is required'),
+					// city      : Yup.string()
+					// 	.min(2, 'Your city must be at least two characters long.')
+					// 	.max(30, 'Your city must be less than 30 characters.')
+					// 	.required('Your city is required'),
 					email     : Yup.string()
 						.min(2, 'Your email must be at least two characters long.')
 						.max(30, 'Your email must be less than 30 characters.')
@@ -112,6 +112,9 @@ const Register = props => {
 								width='4'
 							/>
 						</div>
+
+
+
 
 						<div>
 							{props.touched.email && props.errors.email && <h3>{props.errors.email}</h3>}
