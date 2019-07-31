@@ -97,7 +97,7 @@ const Passport = () => {
         </div>
         </div>
       
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center restaurant-container">
         <Grid centered columns={cols}>
           {restaurants.map(rest => {
             rest = { ...rest, restStampedStatus: stamped };
@@ -109,8 +109,7 @@ const Passport = () => {
                 trigger={
                   <Button
                     basic
-                    //color="teal"
-                    className="column basic"
+                    className="column basic restaurant-card"
                     as="div"
                   >
                     <div className=" rounded overflow-hidden ">
@@ -135,13 +134,13 @@ const Passport = () => {
                       </div>
                       <div className="px-6 py-4">
                         {checked && (
-                          <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-green-200">
+                          <button className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-green-200">
                             Visit
-                          </p>
+                          </button>
                         )}
-                        <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-red-200">
+                        <button className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-red-200">
                           Dont Visit
-                        </p>
+                        </button>
                       </div>
                     </div>
                   </Button>
