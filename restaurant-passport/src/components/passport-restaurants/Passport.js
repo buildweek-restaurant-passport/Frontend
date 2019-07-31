@@ -12,9 +12,8 @@ import {
   Rating
 } from "semantic-ui-react";
 import _ from "lodash";
-
 import RestaurantInfo from '../restaurant-info/restaurant-info'
-
+//import SearchBar from './searchBar/searchBar';
 
 const Passport = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
@@ -75,12 +74,6 @@ const Passport = () => {
     }, 300);
   };
 
-
-    //need to fix this
-
-  
-
-
   return (
     <Container style={{ marginTop: "3em" }} className = 'content-container'>
     <div className = 'header'>
@@ -107,7 +100,7 @@ const Passport = () => {
           {restaurants.map(rest => {
             rest = { ...rest, restStampedStatus: stamped };
             return (
-                  <div className="px-6 py-4">
+              <div className="px-6 py-4">
 
               <Modal
                 key={rest.business_id}
