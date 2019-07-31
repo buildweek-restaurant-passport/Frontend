@@ -12,8 +12,7 @@ import {
   Rating
 } from "semantic-ui-react";
 import _ from "lodash";
-
-import RestaurantInfo from '../restaurant-info/restaurant-info'
+import RestaurantInfo from "./restaurant-components/restaurant-info";
 
 
 const Passport = () => {
@@ -26,7 +25,6 @@ const Passport = () => {
   const [checked, setChecked] = useState(true);
   const [cols, setCols] = useState(4);
   const toggle = () => setChecked(!checked);
-
 
 
   // add remove restaurant to passport
@@ -70,19 +68,13 @@ const Passport = () => {
     }, 300);
   };
 
-
-    //need to fix this
-
-  
-
-
   return (
-    <Container style={{ marginTop: "3em" }} className = 'content-container'>
-    <div className = 'header'>
-      <Header as="h1"  className = 'city-name'>San Francisco Passport</Header>
-        <div className= 'lower-header-content'>
+    <Container style={{ marginTop: "3em" }}>
+      <Header as="h1">San Francisco Passport</Header>
+      <Header as="h2" dividing>
+        <Grid>
+          <Grid.Column width={6}>
             <Search
-              className= 'search-bar-header'
               loading={isLoading}
               onResultSelect={handleResultSelect}
               onSearchChange={_.debounce(handleSearchChange, 500, {
@@ -92,11 +84,16 @@ const Passport = () => {
               value={value}
               resultRenderer={resultRenderer}
             />
-            <Checkbox label='Show Visited' onChange={toggle} checked={checked}   className = 'checkbox'/>
-
-        </div>
-        </div>
-      
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <Checkbox
+              label="Show Visited"
+              onChange={toggle}
+              checked={checked}
+            />
+          </Grid.Column>
+        </Grid>
+      </Header>
       <div className="min-h-screen flex items-center justify-center">
         <Grid centered columns={cols}>
           {restaurants.map(rest => {

@@ -12,11 +12,12 @@ const RestaurantInfo = (props, stamped) => {
     const { inspection_score } = props
     
 
-      
+
+
     return (
-        <div className="restaurant-info">
+        
             
-            <Modal trigger={<Button>View More</Button>} style = {{width: '40%' }}closeIcon>
+            <>
                 <Header content='Restaurant Info' />
                 <Modal.Content>
 
@@ -51,8 +52,8 @@ const RestaurantInfo = (props, stamped) => {
 
                 </Modal.Actions>
 
-            </Modal>
-        </div>
+            </>
+        
     );
 
 
