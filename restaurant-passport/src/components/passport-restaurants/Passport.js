@@ -22,7 +22,16 @@ const Passport = props => {
   const [stamped, setStamped] = useState(true);
   const [checked, setChecked] = useState(true);
   const [cols, setCols] = useState(4);
+
+  const [hovered, setHovered] = useState(false)
+
+
+  const displayButtons = (event) => {}
+  const hideButtons = (event) => {}
+
+
   const toggle = () => setChecked(!checked);
+
 
 
   // add remove restaurant to passport
@@ -31,10 +40,7 @@ const Passport = props => {
     console.log("in use effect ", stamped);
   }, [stamped]);
 
-  // const updateRestStatus = () => {
-  //   setStamped(!stamped)
-  //   console.log(stamped);
-  // }
+  
 
   return (
     <Container style={{ marginTop: "3em" }} className="content-container">
@@ -60,10 +66,11 @@ const Passport = props => {
 
       <div className="min-h-screen flex items-center justify-center restaurant-container">
         <Grid centered columns={cols}>
+
+
           {restaurants.map(rest => 
             <RestaurantModal rest={rest} key={rest.business_id} />
           )}
- 
         </Grid>
       </div>
     </Container>

@@ -40,6 +40,33 @@
         margin: 0 auto;
         .restaurant-card{
             margin : 30px;
+            height : 350px;
+            width: 300px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-content: center;
+            padding:20px;
+            text-align: left;
+            .rest-details{
+                width:88%;
+                margin:0 auto;
+                font-size: 1.6rem;
+                font-weight: 600;
+            }
+            .rest-name{
+                font-size:2.2rem;
+                font-weight: 800;
+            }
+            .add-remove-buttons{
+                width:88%;
+                margin: 0 auto;
+                height: auto;
+                display:flex;
+                flex-direction:row-reverse;
+                justify-content:space-between;
+            }
+            
         }
     }
 
