@@ -12,14 +12,8 @@ const RestaurantInfo = (props, stamped) => {
     const { inspection_score } = props
     
 
-<<<<<<< HEAD:restaurant-passport/src/components/restaurant-components/restaurant-info.js
-    useEffect(() => {
-        console.log('in use effect ', restStampedStatus)
-      },[restStampedStatus]);
-      //<div className="restaurant-info">
-=======
-      
->>>>>>> 0cfc482fb50dfbe48179f03cc342b1b8ec1eb7a8:restaurant-passport/src/components/restaurant-info/restaurant-info.js
+
+
     return (
         
             
