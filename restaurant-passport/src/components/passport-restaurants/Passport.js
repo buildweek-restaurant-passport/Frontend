@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { getRestaurants } from "../../actions/Restaurants"; //redux
-import { connect } from "react-redux"; //redux
-import { Container, Header, Grid, Checkbox } from "semantic-ui-react";
-
+import { getRestaurants } from '../../actions/Restaurants'; //redux
+import { connect } from 'react-redux'; //redux
+import {
+  Container,
+  Header,
+  Grid,
+  Checkbox
+} from "semantic-ui-react";
+import axios from 'axios';
 import RestaurantModal from "./restaurantModal/restaurantModal";
 import SearchBar from "./searchBar/searchBar";
 
 const Passport = props => {
-  // const getRestaurants = e => {
-  //   e.preventDefault();
-  //   props.getRestaurants();
-  // };
-
-  //const [restaurants, setRestaurants] = useState(restaurantList);
+  
   //checking state of stamped , if true  checkmark will be added to component
   const [stamped, setStamped] = useState(true);
   const [checked, setChecked] = useState(true);
@@ -20,8 +20,7 @@ const Passport = props => {
 
   const [hovered, setHovered] = useState(false);
 
-  const displayButtons = event => {};
-  const hideButtons = event => {};
+
 
   const toggle = () => setChecked(!checked);
 
@@ -64,12 +63,12 @@ const Passport = props => {
         )}
       </div>
     </Container>
-  );
+
+)
+
+
 };
 
-// export default Passport;
-
-//Redux setup
 const mapStateToProps = state => ({
   restaurants: state.restaurants,
   error: state.error,

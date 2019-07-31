@@ -50,8 +50,7 @@ const Passports = () => {
 
 	return (
 		<div>
-			{console.log(passports)}
-			<Header as='h1' color='#085F63' class='ui header'>
+			<Header as='h1' color='#085F63' className='ui header'>
 				My Passport
 			</Header>
 

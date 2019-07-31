@@ -19,15 +19,15 @@ const SearchBar = props => {
   const [results, setResults] = useState([]);
   const [value, setValue] = useState("");
 
-  const resultRenderer = ({ business_name }) => (
+  const resultRenderer = ({ name }) => (
     <Label attached='bottom'
-    content={business_name} />
+    content={name} />
   );
   const handleResultSelect = (e, { result }) => {
-    setValue(result.business_name);
+    setValue(result.name);
     props.setRestaurants(
       props.restaurants.filter(
-        restaurant => restaurant.business_id === result.business_id
+        restaurant => restaurant.id === result.id
       )
     );
     props.setCols(1);
@@ -45,26 +45,26 @@ const SearchBar = props => {
       }
 
       const re = new RegExp(_.escapeRegExp(value), "i");
-      const isMatch = result => re.test(result.business_name);
+      const isMatch = result => re.test(result.name);
       setIsLoading(false);
       setResults(_.filter(props.restaurants, isMatch));
     }, 300);
   };
 
-return (
-            <Search
-              className= 'search-bar-header'
-              loading={isLoading}
+  return (
+    <Search
+      className= 'search-bar-header'
+      loading={isLoading}
 
-              onResultSelect={handleResultSelect}
-              onSearchChange={_.debounce(handleSearchChange, 500, {
-                leading: true
-              })}
-              results={results}
-              value={value}
-              resultRenderer={resultRenderer}
-            />
-)
-          }
+      onResultSelect={handleResultSelect}
+      onSearchChange={_.debounce(handleSearchChange, 500, {
+        leading: true
+      })}
+      results={results}
+      value={value}
+      resultRenderer={resultRenderer}
+    />
+  )
+}
 
 export default SearchBar
