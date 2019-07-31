@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
+import { Button, Form as UIForm } from 'semantic-ui-react';
 
 const Login = props => {
 	return (
@@ -14,12 +15,12 @@ const Login = props => {
 				console.log(values);
 				actions.setSubmitting(true);
 				axios
-					.post('http://localhost:3000/Login', values)
+					.post('https://restaurant-app-appi.herokuapp.com/api/v1/auth/login', values)
 					.then(res => {
 						localStorage.setItem('token', res.data.token);
 						console.log(props);
 					})
-					.then(() => props.history.push('passports'))
+					.then(() => props.history.push('https://restaurant-app-appi.herokuapp.com/api/v1/passports'))
 					.catch(err => console.log(err));
 			}}
 			validationSchema={() =>
@@ -40,34 +41,38 @@ const Login = props => {
 						alignItems    : 'center',
 					}}
 					onSubmit={props.handleSubmit}>
-					<div>
-						{props.touched.username && props.errors.username && <h3>{props.errors.username}</h3>}
+					<UIForm className='loginForm'>
+						<div>
+							{props.touched.username && props.errors.username && <h3>{props.errors.username}</h3>}
 
-						<Field
-							placeholder='Username'
-							label='username'
-							name='username'
-							id='username'
-							type='text'
-							onChange={props.handleChange}
-							width='4'
-						/>
-					</div>
+							<Field
+								placeholder='Username'
+								label='username'
+								name='username'
+								id='username'
+								type='text'
+								onChange={props.handleChange}
+								width='4'
+							/>
+						</div>
 
-					<div>
-						{props.touched.password && props.errors.password && <h3>{props.errors.password}</h3>}
-						<Field
-							placeholder='Password'
-							label='password'
-							name='password'
-							id='password'
-							type='password'
-							onChange={props.handleChange}
-							width='4'
-						/>
-					</div>
+						<div>
+							{props.touched.password && props.errors.password && <h3>{props.errors.password}</h3>}
+							<Field
+								placeholder='Password'
+								label='password'
+								name='password'
+								id='password'
+								type='password'
+								onChange={props.handleChange}
+								width='4'
+							/>
+						</div>
 
-					<button type='submit'>Login</button>
+						<button type='submit' class='ui button'>
+							Login
+						</button>
+					</UIForm>
 				</Form>
 			)}
 		/>
