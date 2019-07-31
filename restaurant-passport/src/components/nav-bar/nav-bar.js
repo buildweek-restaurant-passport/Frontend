@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assests/images/logo.png'
 
-const NavBar = () => {
+const NavBar = (props) => {
+    console.log(props);
+    
 
     return (
 
@@ -14,7 +16,7 @@ const NavBar = () => {
             <div className = 'nav-links' style = {{width:'44%', color: '#085f63', fontSize:'20px', display:'flex', justifyContent: 'space-between', fontWeight: '800',}}>
                 <Link to ='/passports'>My Passports</Link>
                 <Link to ='/restaurants'>Restaurants</Link> 
-                <Link to ='/'>Log Out</Link>
+                {props.location.pathname !== '/' && <Link to ='/'>Log Out</Link>}
             </div>
         </div>
     )
