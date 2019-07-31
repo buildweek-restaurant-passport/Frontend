@@ -12,6 +12,7 @@ import {
   Rating
 } from "semantic-ui-react";
 import _ from "lodash";
+<<<<<<< HEAD:restaurant-passport/src/components/Passport.js
 import RestaurantInfo from "./restaurant-components/restaurant-info";
 
 const ButtonExampleGroupIcon = () => (
@@ -26,6 +27,9 @@ const ButtonExampleGroupIcon = () => (
 );
 
 const VisitIcon = () => <Rating maxRating={1} clearable />;
+=======
+import RestaurantInfo from '../restaurant-info/restaurant-info'
+>>>>>>> 0cfc482fb50dfbe48179f03cc342b1b8ec1eb7a8:restaurant-passport/src/components/passport-restaurants/Passport.js
 
 const Passport = () => {
   const [restaurants, setRestaurants] = useState(restaurantList);
@@ -38,6 +42,10 @@ const Passport = () => {
   const [cols, setCols] = useState(4);
   const toggle = () => setChecked(!checked);
 
+<<<<<<< HEAD:restaurant-passport/src/components/Passport.js
+=======
+  const [stamped, setStamped] = useState(true);
+>>>>>>> 0cfc482fb50dfbe48179f03cc342b1b8ec1eb7a8:restaurant-passport/src/components/passport-restaurants/Passport.js
 
   // add remove restaurant to passport
 
@@ -79,14 +87,24 @@ const Passport = () => {
       setResults(_.filter(restaurants, isMatch));
     }, 300);
   };
+<<<<<<< HEAD:restaurant-passport/src/components/Passport.js
+=======
+    const [checked, setChecked] = useState(true)
+
+    const [cols, setCols] = useState(4)
+    const toggle = () => setChecked(!checked)
+    //need to fix this
+
+  
+>>>>>>> 0cfc482fb50dfbe48179f03cc342b1b8ec1eb7a8:restaurant-passport/src/components/passport-restaurants/Passport.js
 
   return (
-    <Container style={{ marginTop: "3em" }}>
-      <Header as="h1">San Francisco Passport</Header>
-      <Header as="h2" dividing>
-        <Grid>
-          <Grid.Column width={6}>
+    <Container style={{ marginTop: "3em" }} className = 'content-container'>
+    <div className = 'header'>
+      <Header as="h1"  className = 'city-name'>San Francisco Passport</Header>
+        <div className= 'lower-header-content'>
             <Search
+              className= 'search-bar-header'
               loading={isLoading}
               onResultSelect={handleResultSelect}
               onSearchChange={_.debounce(handleSearchChange, 500, {
@@ -96,6 +114,7 @@ const Passport = () => {
               value={value}
               resultRenderer={resultRenderer}
             />
+<<<<<<< HEAD:restaurant-passport/src/components/Passport.js
           </Grid.Column>
           <Grid.Column width={4}>
             <Checkbox
@@ -142,7 +161,6 @@ const Passport = () => {
                         <p className="text-gray-700 text-base">{`${rest.business_city}, ${rest.business_state}`}</p>
                         <p className="text-gray-700 text-base">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
                       </div>
-                      <VisitIcon onRate={handleChange} />
                       <div className="px-6 py-4">
                         {checked && (
                           <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-green-200">
@@ -165,6 +183,40 @@ const Passport = () => {
               </Modal>
             );
           })}
+=======
+          <Checkbox label='Show Visited' onChange={toggle} checked={checked}   className = 'checkbox'/>
+          </div>
+      </div>
+      <div className="min-h-screen flex items-center justify-center restaurant-container">
+        <Grid centered columns={4}>
+          {restaurants.map((rest) => {
+
+            return(
+            <Grid.Column key={rest.business_id}>
+              <div className=" rounded overflow-hidden shadow-lg">
+                <div className="px-6 py-4">
+                  <div className="font-bold text-xl mb-2">
+                    {rest.business_name}
+                    {stamped && <Icon name = "check" style ={{fontSize: "10px", margin: 'auto 0', paddingLeft:'10px', color : '##49beb7'}}/> || ' ' }
+                  </div>
+                  <p className="text-gray-700 text-base">{`${rest.business_city}, ${rest.business_state}`}</p>
+                  <p className="text-gray-700 text-base">{`${rest.business_address}, ${rest.business_phone_number}`}</p>
+                </div>
+                <div className="px-6 py-4">
+                  {checked && <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-green-200">
+                                      Visit
+                  </p>}
+                  <p className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 bg-red-200">
+                    Dont Visit
+                  </p>
+                  
+                  <RestaurantInfo {...rest} key = {rest.business_id} stamped = {stamped}/>
+                  
+                </div>
+              </div>
+            </Grid.Column>
+          )})}
+>>>>>>> 0cfc482fb50dfbe48179f03cc342b1b8ec1eb7a8:restaurant-passport/src/components/passport-restaurants/Passport.js
         </Grid>
       </div>
     </Container>

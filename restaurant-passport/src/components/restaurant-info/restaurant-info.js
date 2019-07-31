@@ -1,7 +1,7 @@
 import React,{ useState, useEffect }  from "react";
 import { Card, Button, Icon, Header, Modal } from "semantic-ui-react";
 
-const RestaurantInfo = (props, setStamped) => {
+const RestaurantInfo = (props, stamped) => {
 
 
     const { business_name } = props
@@ -10,13 +10,16 @@ const RestaurantInfo = (props, setStamped) => {
     const { inspection_type } = props
     const { violation_description } = props
     const { inspection_score } = props
-    const { restStampedStatus } = props
     
 
+<<<<<<< HEAD:restaurant-passport/src/components/restaurant-components/restaurant-info.js
     useEffect(() => {
         console.log('in use effect ', restStampedStatus)
       },[restStampedStatus]);
       //<div className="restaurant-info">
+=======
+      
+>>>>>>> 0cfc482fb50dfbe48179f03cc342b1b8ec1eb7a8:restaurant-passport/src/components/restaurant-info/restaurant-info.js
     return (
         
             
@@ -26,8 +29,9 @@ const RestaurantInfo = (props, setStamped) => {
 
                     <Card style={{ margin: '10px auto', padding: '8px', boxShadow: '0px 0px 3px #085f63', width: '85%' }}>
                         <Card.Content>
-                            <Card.Header>{business_name}
-                                <Icon name="check" style={{ fontSize: "10px", margin: 'auto 0', paddingLeft: '10px', color: '##49beb7' }}></Icon>
+                            <Card.Header>
+                            {business_name}
+                            {stamped && <Icon name = "check" style ={{fontSize: "10px", margin: 'auto 0', paddingLeft:'10px', color : '##49beb7'}}/> || ' ' }
                             </Card.Header>
                             <Card.Meta>
                             <p>Address : {business_address}</p>
