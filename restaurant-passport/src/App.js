@@ -17,9 +17,7 @@ function App() {
 		<div className="App">
 			<Route path="/" component={NavBar} />
 			<Switch>
-				<Route exact path="/(|login|signup)" component={Login} />
-				{/* <Route exact path="/login" component={Landing} />
-				<Route exact path="/signup" component={Landing} /> */}
+				<Route exact path="/(|login|register)" component={Landing} />
 				<Route exact path="/passports" component={Passports} />
 				<Route exact path="/restaurants" component={Passport} />
 			</Switch>

@@ -7,7 +7,7 @@ const NavBar = (props) => {
         const landingPageUrls = [
             '/',
             '/login',
-            '/signup',
+            '/register',
         ];
         return (landingPageUrls.some(url => url === props.location.pathname));
     };
