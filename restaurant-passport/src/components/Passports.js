@@ -54,6 +54,7 @@ const Passports = () => {
 			<Header as='h1' color='#085F63' class='ui header'>
 				My Passport
 			</Header>
+
 			<Image
 				src='https://media.afar.com/uploads/images/afar_post_headers/images/wsGsA768bP/original_shutterstock_1110443648.jpg?1543263550'
 				size='large'
