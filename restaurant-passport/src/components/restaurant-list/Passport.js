@@ -22,7 +22,6 @@ const Passport = props => {
   // const [restaurants, setRestaurants] = useState(restaurantList);
   const [restaurants, setRestaurants] = useState();
   //checking state of stamped , if true  checkmark will be added to component
-  const [stamped, setStamped] = useState(true);
   const [checked, setChecked] = useState(true);
   const [cols, setCols] = useState(4);
 
@@ -43,9 +42,11 @@ const Passport = props => {
 
   // add remove restaurant to passport
 
-  useEffect(() => {
-    console.log("in use effect ", stamped);
-  }, [stamped]);
+  const [savedRestaurants, setSavedRestaurants] = useState([])
+
+  useEffect(()=>{
+    console.log(savedRestaurants)
+  },[savedRestaurants])
 
 
   return (
@@ -78,7 +79,7 @@ const Passport = props => {
 
 
               {restaurants.map(rest => 
-                <RestaurantModal {...rest} key={rest.business_id} />
+                <RestaurantModal {...rest} key={rest.business_id} setSavedRestaurants = {setSavedRestaurants}  savedRestaurants= {savedRestaurants} />
               )}
             </Grid>
           </div>
