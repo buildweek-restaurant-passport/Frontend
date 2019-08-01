@@ -1,8 +1,24 @@
-import React, { useState } from "react";
-import { Search, Label} from "semantic-ui-react";
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  Header,
+  Grid,
+  Checkbox,
+  Search,
+  Label,
+  Icon,
+  Modal,
+  Button,
+  Input
+} from "semantic-ui-react";
 import _ from "lodash";
 
+
 const SearchBar = props => {
+
+  const handleChange = e => {
+    store.dispatch({ type: SEARCH, payload: e.target.value })
+  }
 
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
@@ -14,11 +30,11 @@ const SearchBar = props => {
   );
   const handleResultSelect = (e, { result }) => {
     setValue(result.name);
-    props.setRestaurants(
+    
       props.restaurants.filter(
         restaurant => restaurant.id === result.id
       )
-    );
+    
     props.setCols(1);
   };
   const handleSearchChange = (e, { value }) => {
@@ -26,7 +42,7 @@ const SearchBar = props => {
     setValue(value);
     setTimeout(() => {
       if (value.length < 1) {
-        props.setRestaurants(props.restaurants);
+        // props.setRestaurants(props.restaurants);
         setIsLoading(false);
         setResults([]);
         setValue("");
@@ -41,19 +57,29 @@ const SearchBar = props => {
   };
 
   return (
-    <Search
-      className= 'search-bar-header'
-      loading={isLoading}
-      onResultSelect={handleResultSelect}
-      placeholder = 'Start Your Search'
-      onSearchChange={_.debounce(handleSearchChange, 500, {
-        leading: true
-      })}
-      results={results}
-      value={value}
-      resultRenderer={resultRenderer}
-    />
-  )
+
+                  <Input
+                onChange={handleChange}
+                placeholder="search posts..."
+              />
+    )
+
+  // return (
+  //   <Search
+  //     className= 'search-bar-header'
+  //     loading={isLoading}
+
+  //     onResultSelect={handleResultSelect}
+  //     onSearchChange={_.debounce(handleSearchChange, 500, {
+  //       leading: true
+  //     })}
+  //     results={results}
+  //     value={value}
+  //     resultRenderer={resultRenderer}
+  //   />
+  // )
+
+
 }
 
 export default SearchBar
