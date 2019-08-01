@@ -17,8 +17,7 @@ const Login = props => {
 				axios
 					.post('https://restaurant-app-appi.herokuapp.com/api/v1/auth/login', values)
 					.then(res => {
-						localStorage.setItem('token', res.data.token);
-						console.log(props);
+						localStorage.setItem('token', res.data.body.token);
 					})
 					.then(() => props.history.push('/passports'))
 					.catch(err => console.log(err));
