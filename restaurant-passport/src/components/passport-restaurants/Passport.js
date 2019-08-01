@@ -15,7 +15,7 @@ const Passport = props => {
   const { getRestaurants } = props;
   //checking state of stamped , if true  checkmark will be added to component
   // const [stamped, setStamped] = useState(true);
-  const [checked, setChecked] = useState(true);
+  const [visitedChecked, setVisitedChecked] = useState(true);
   const [cols, setCols] = useState(4);
   // const [hovered, setHovered] = useState(false);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
