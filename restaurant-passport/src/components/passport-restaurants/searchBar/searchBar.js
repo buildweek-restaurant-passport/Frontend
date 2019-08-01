@@ -9,11 +9,17 @@ import {
   Icon,
   Modal,
   Button,
-  Rating
+  Input
 } from "semantic-ui-react";
 import _ from "lodash";
 
+import { SEARCH } from "../../../actions/Restaurants";
+import { store } from '../../../index.js'
 const SearchBar = props => {
+
+  const handleChange = e => {
+    store.dispatch({ type: SEARCH, payload: e.target.value })
+  }
 
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState([]);
@@ -25,11 +31,11 @@ const SearchBar = props => {
   );
   const handleResultSelect = (e, { result }) => {
     setValue(result.name);
-    props.setRestaurants(
+    
       props.restaurants.filter(
         restaurant => restaurant.id === result.id
       )
-    );
+    
     props.setCols(1);
   };
   const handleSearchChange = (e, { value }) => {
@@ -37,7 +43,7 @@ const SearchBar = props => {
     setValue(value);
     setTimeout(() => {
       if (value.length < 1) {
-        props.setRestaurants(props.restaurants);
+        // props.setRestaurants(props.restaurants);
         setIsLoading(false);
         setResults([]);
         setValue("");
@@ -52,19 +58,26 @@ const SearchBar = props => {
   };
 
   return (
-    <Search
-      className= 'search-bar-header'
-      loading={isLoading}
+                  <Input
+                onChange={handleChange}
+                placeholder="search posts..."
+              />
+    )
 
-      onResultSelect={handleResultSelect}
-      onSearchChange={_.debounce(handleSearchChange, 500, {
-        leading: true
-      })}
-      results={results}
-      value={value}
-      resultRenderer={resultRenderer}
-    />
-  )
+  // return (
+  //   <Search
+  //     className= 'search-bar-header'
+  //     loading={isLoading}
+
+  //     onResultSelect={handleResultSelect}
+  //     onSearchChange={_.debounce(handleSearchChange, 500, {
+  //       leading: true
+  //     })}
+  //     results={results}
+  //     value={value}
+  //     resultRenderer={resultRenderer}
+  //   />
+  // )
 }
 
 export default SearchBar

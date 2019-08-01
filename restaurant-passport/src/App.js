@@ -6,10 +6,10 @@ import Register from './components/access/Register';
 import Login from './components/access/Login';
 import NavBar from './components/nav-bar/nav-bar';
 import Landing from './components/access/Landing';
-
 import './App.css';
 import './components/passport-restaurants/passport.scss';
 import './components/access/access.scss';
+
 
 function App() {
 	return (

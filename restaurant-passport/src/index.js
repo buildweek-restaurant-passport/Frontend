@@ -11,16 +11,19 @@ import 'semantic-ui-css/semantic.min.css';
 import './css/tailwind.css';
 import { BrowserRouter } from 'react-router-dom';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+export const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
 	<Provider store={store}>
 		<BrowserRouter>
 			<App />
 		</BrowserRouter>
-	</Provider>,
+	</Provider>
+  ,
 	document.getElementById('root'),
 );
+
+//ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

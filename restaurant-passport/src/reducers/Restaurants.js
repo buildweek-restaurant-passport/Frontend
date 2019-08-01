@@ -1,9 +1,10 @@
-import { FETCH_RESTAURANTS_START, FETCH_RESTAURANTS_SUCCESS, FETCH_RESTAURANTS_FAIL } from '../actions/Restaurants';
+import { FETCH_RESTAURANTS_START, FETCH_RESTAURANTS_SUCCESS, FETCH_RESTAURANTS_FAIL, SEARCH } from '../actions/Restaurants';
 
 const initialState = {
 	restaurants : [],
 	isFetching  : true,
 	error       : '',
+	search      : ''
 };
 
 function RestaurantData(state = initialState, action) {
@@ -26,8 +27,19 @@ function RestaurantData(state = initialState, action) {
 				...state,
 				error : action.payload,
 			};
+    case SEARCH:
+      return { ...state, 
+      		search: action.payload,
+      	  restaurants: action.payload
+          .filter(restaurant => restaurant.name.includes(action.payload))
+        }
+          	
+
+
 		default:
 			return state;
 	}
 }
 export default RestaurantData;
+
+
