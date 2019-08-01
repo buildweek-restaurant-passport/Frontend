@@ -17,7 +17,7 @@ const Register = props => {
 				// cityId: Date.now()
 			}}
 			onSubmit={(values, actions) => {
-				console.log(values);
+				console.log('Login Info', values);
 				actions.setSubmitting(true);
 				axios
 					.post('https://restaurant-app-appi.herokuapp.com/api/v1/auth/register', values)

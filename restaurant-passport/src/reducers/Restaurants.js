@@ -2,7 +2,7 @@ import { FETCH_RESTAURANTS_START, FETCH_RESTAURANTS_SUCCESS, FETCH_RESTAURANTS_F
 
 const initialState = {
 	restaurants : [],
-	isFetching  : false,
+	isFetching  : true,
 	error       : '',
 };
 

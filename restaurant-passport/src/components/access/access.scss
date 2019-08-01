@@ -1,3 +1,64 @@
 .ui.header:first-child {
+<<<<<<< HEAD
     color: rgb(8, 95, 99);
+=======
+	color: rgb(8, 95, 99);
+}
+.content-container {
+	width: 100% !important;
+	.header {
+		width: 100%;
+		height: 575px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		background: linear-gradient(
+				220deg,
+				rgba(8, 95, 99, .5) 0%,
+				rgba(245, 225, 218, .5) 60%,
+				rgba(73, 190, 183, .5) 90%
+			),
+			url(https://mynewsla.com/wp-content/uploads/2015/08/restaurant-691397_1280.jpg) no-repeat center bottom
+				fixed;
+		background-size: cover;
+		.city-name {
+			padding-top: 90px;
+			font-size: 4rem;
+			color: rgba(8, 95, 99, 1);
+			text-shadow: 0px 0px 20px rgba(245, 225, 218, 1);
+		}
+	}
+}
+
+#login-header {
+	margin-right: 30px;
+	color: #085f63;
+}
+#register-header {
+	color: #085f63;
+}
+#top {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+input#password {
+	margin-top: 10px;
+}
+input#username {
+	margin-top: 10px;
+}
+input#firstName {
+	margin-top: 10px;
+}
+input#lastName {
+	margin-top: 10px;
+}
+input#email {
+	margin-top: 10px;
+}
+button.ui.button {
+	margin-top: 10px;
+	font-size: 1.2rem;
+>>>>>>> 94442d78cd50bfc34b2feaa39735cfcf250d0e74
 }
