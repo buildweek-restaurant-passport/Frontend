@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import '../access/access.scss';
+import '../../css/access.scss';
 
 const Passports = () => {
 	return (

@@ -14,10 +14,10 @@ import RestaurantModal from './restaurantModal/restaurantModal'
 const Passport = props => {
   const { getRestaurants } = props;
   //checking state of stamped , if true  checkmark will be added to component
-  const [stamped, setStamped] = useState(true);
+  // const [stamped, setStamped] = useState(true);
   const [checked, setChecked] = useState(true);
   const [cols, setCols] = useState(4);
-  const [hovered, setHovered] = useState(false);
+  // const [hovered, setHovered] = useState(false);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searching, setSearching] = useState(false);
 

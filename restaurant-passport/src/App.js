@@ -2,15 +2,13 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import './App.css';
-import './components/passport-restaurants/passport.scss';
-import './components/access/access.scss';
+import './css/access.scss';
 import Passport from './components/passport-restaurants/Passport.js';
 import Passports from './components/passports/Passports';
 import NavBar from './components/nav-bar/nav-bar';
 import Landing from './components/access/Landing';
 import './App.css';
-import './components/passport-restaurants/passport.scss';
-import './components/access/access.scss';
+import './css/passport.scss';
 import PrivateRouteWithProps from './authentication/PrivateRouteWithProps';
 
 function App() {
