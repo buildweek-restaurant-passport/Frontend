@@ -1,16 +1,12 @@
 import React, {
   useState,
   useEffect,
-  useReducer,
-  useContext,
-  createContext
 } from "react";
 
 import { getRestaurants } from "../../actions/Restaurants"; //redux
 import { connect } from "react-redux"; //redux
 import { Container, Header, Grid, Checkbox, Input, Loader } from "semantic-ui-react";
-import axios from "axios";
-import RestaurantModal from '../passport-restaurants/restaurantModal/restaurantModal'
+import RestaurantModal from './restaurantModal/restaurantModal'
 //import SearchBar from "../passport-restaurants/searchBar/searchBar";
 // import { SEARCH } from "../../actions/Restaurants";
 // import { store } from "../../index.js";
