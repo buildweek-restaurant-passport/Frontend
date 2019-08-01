@@ -105,7 +105,7 @@ const Passport = props => {
               : visitedChecked
               ? savedRestaurants.map(rest => (
                   <RestaurantModal
-                    rest={rest.rest}
+                    rest={rest}
                     key={rest.id}
                     setSavedRestaurants={setSavedRestaurants}
                     savedRestaurants={savedRestaurants}

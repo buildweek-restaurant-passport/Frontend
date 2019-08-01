@@ -27,7 +27,7 @@ const RestaurantModal = (props) => {
   };
 
   const addToSavedList = (event) => {
-    setSavedRestaurants(savedRestaurants => [...savedRestaurants, {...props}])
+    setSavedRestaurants(savedRestaurants => [...savedRestaurants, {...props.rest}])
     setChecked(!checked)
   }
 
