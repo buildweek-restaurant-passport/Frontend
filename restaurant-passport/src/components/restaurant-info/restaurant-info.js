@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useEffect}from "react";
 import { Card, Button, Icon, Header, Modal } from "semantic-ui-react";
 
 const RestaurantInfo = (props) => {
@@ -18,11 +18,9 @@ const RestaurantInfo = (props) => {
     const addToSavedList = (event) => {
         setSavedRestaurants(savedRestaurants => [...savedRestaurants, {...props.info}])
         setChecked(checked => !checked)
-        //reseting cards hovered state back to false
-        setCardHovered(cardHovered => (!cardHovered))
-      }
-
-      const removeFromSavedList = (event) => {
+    }
+    
+    const removeFromSavedList = (event) => {
         //finding index of element with matching id
         const id = props.info.id
         const itemToRemove = savedRestaurants.findIndex(restaurant => restaurant.id === id )
@@ -30,9 +28,15 @@ const RestaurantInfo = (props) => {
         savedRestaurants.splice(itemToRemove, 1)
         setSavedRestaurants(savedRestaurants => [...savedRestaurants])
         setChecked(checked => !checked)
-        //reseting cards hovered state back to false
-        setCardHovered(cardHovered => (!cardHovered))
-      }
+    }
+    
+    //reseting cards hovered state back to false
+
+      useEffect(() =>{
+
+        setCardHovered(cardHovered => !cardHovered)
+
+      },[setChecked])
 
     return (
 

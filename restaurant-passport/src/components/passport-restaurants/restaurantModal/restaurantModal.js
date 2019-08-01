@@ -41,6 +41,10 @@ const RestaurantModal = (props) => {
   useEffect (() =>{
     // console.log(checked)
   },[checked])
+
+  useEffect(() =>{
+
+  },[cardHovered])
   
   return (
     <div className="px-6 py-4" onMouseEnter = {toggleCardButtons} onMouseLeave = {toggleCardButtons}>
