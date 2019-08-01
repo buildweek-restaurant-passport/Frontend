@@ -1,9 +1,9 @@
 import React from "react";
 import { Card, Button, Icon, Header, Modal } from "semantic-ui-react";
 
-const RestaurantInfo = (info) => {
+const RestaurantInfo = (props) => {
 
-    console.log(info)
+    console.log(props)
 
 
     return (
@@ -15,16 +15,16 @@ const RestaurantInfo = (info) => {
                 <Card style={{ margin: '10px auto', padding: '8px', boxShadow: '0px 0px 3px #085f63', width: '95%'}}>
                     <Card.Content>
                         <Card.Header style ={{fontSize:'2.0rem'}}>
-                            {info.info.name}
+                            {props.info.name}
                             <Icon name="check" style={{ fontSize: "10px", margin: 'auto 0', paddingLeft: '10px', color: '##49beb7' }} />
                         </Card.Header>
                         
                         <Card.Description>
-                            <p style = {{fontSize:'1.2rem'}}>City : {info.info.city}</p>
+                            <p style = {{fontSize:'1.2rem'}}>City : {props.info.city}</p>
                         
-                            <p style = {{fontSize:'1.2rem'}}>Country : {info.info.country}</p>
-                            <p style = {{fontSize:'1.2rem'}}>Cuisine Type : {info.info.type}</p>
-                            <p style = {{fontSize:'1.2rem'}}>Restaurant Description : {info.info.description}</p>
+                            <p style = {{fontSize:'1.2rem'}}>Country : {props.info.country}</p>
+                            <p style = {{fontSize:'1.2rem'}}>Cuisine Type : {props.info.type}</p>
+                            <p style = {{fontSize:'1.2rem'}}>Restaurant Description : {props.info.description}</p>
                         </Card.Description>
                     </Card.Content>
                 </Card>

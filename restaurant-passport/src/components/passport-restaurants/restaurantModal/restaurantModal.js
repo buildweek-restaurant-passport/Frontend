@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import { Icon, Modal, Button } from "semantic-ui-react";
 import _ from "lodash";
 import RestaurantInfo from "../../restaurant-info/restaurant-info";
@@ -6,13 +6,18 @@ import RestaurantInfo from "../../restaurant-info/restaurant-info";
 const RestaurantModal = (props) => {
 
   const [checked, setChecked] = useState(true);
-  const [hovered, setHovered] = useState(true);
+  const [cardHovered, setCardHovered] = useState(false);
   
   const {setSavedRestaurants} = props
 
   const {savedRestaurants} = props
 
 
+  const toggleCardButtons = () => {
+    setCardHovered(!cardHovered)
+  }
+
+  
   const handleClick = e => {
     e.stopPropagation();
     e.preventDefault();
@@ -34,7 +39,7 @@ const RestaurantModal = (props) => {
   }
 
   return (
-    <div className="px-6 py-4">
+    <div className="px-6 py-4" onMouseEnter = {toggleCardButtons} onMouseLeave = {toggleCardButtons}>
       <Modal
         style={{ width: "40%" }}
         closeIcon
@@ -55,7 +60,7 @@ const RestaurantModal = (props) => {
             <p className="rest-details">{`${props.city}, ${props.country}`}</p>
             <p className="rest-details">{`${props.type}`}</p>
             <div className="add-remove-buttons">
-              {checked && hovered &&(
+              {checked && cardHovered && (
                 <button className="add" onClick={handleClick}>
                   <Icon
                     name="plus"
@@ -65,7 +70,7 @@ const RestaurantModal = (props) => {
                   />
                 </button>
               )}
-              {!checked && hovered &&(
+              {!checked && cardHovered &&(
                 <button className="remove" onClick={handleClick}>
                   <Icon
                     name="minus"
