@@ -1,10 +1,19 @@
-import { FETCH_RESTAURANTS_START, FETCH_RESTAURANTS_SUCCESS, FETCH_RESTAURANTS_FAIL, SEARCH } from '../actions/Restaurants';
+import {
+	FETCH_RESTAURANTS_START,
+	FETCH_RESTAURANTS_SUCCESS,
+	FETCH_RESTAURANTS_FAIL,
+	SEARCH,
+	FETCH_SAVED_START,
+	FETCH_SAVED_SUCCESS,
+	FETCH_SAVED_FAIL,
+} from '../actions/Restaurants';
 
 const initialState = {
-	restaurants : [],
-	isFetching  : true,
-	error       : '',
-	search      : ''
+	restaurants      : [],
+	savedRestaurants : [],
+	isFetching       : true,
+	error            : '',
+	search           : '',
 };
 
 function RestaurantData(state = initialState, action) {
@@ -27,19 +36,33 @@ function RestaurantData(state = initialState, action) {
 				...state,
 				error : action.payload,
 			};
-    case SEARCH:
-      return { ...state, 
-      		search: action.payload,
-      	  restaurants: action.payload
-          .filter(restaurant => restaurant.name.includes(action.payload))
-        }
-          	
-
+		case SEARCH:
+			return {
+				...state,
+				search      : action.payload,
+				restaurants : action.payload.filter(restaurant => restaurant.name.includes(action.payload)),
+			};
+		case FETCH_SAVED_START:
+			return {
+				...state,
+				isFetching : true,
+				error      : 'You have not successfully fetched the saved restaurants!',
+			};
+		case FETCH_SAVED_SUCCESS:
+			return {
+				...state,
+				savedRestaurants : action.payload,
+				isFetching       : false,
+				error            : '',
+			};
+		case FETCH_SAVED_FAIL:
+			return {
+				...state,
+				error : action.payload,
+			};
 
 		default:
 			return state;
 	}
 }
 export default RestaurantData;
-
-
