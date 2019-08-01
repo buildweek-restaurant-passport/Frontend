@@ -1,5 +1,5 @@
 import React ,{useEffect}from "react";
-import { Card, Button, Icon, Header, Modal } from "semantic-ui-react";
+import { Card, Button, Icon, Modal } from "semantic-ui-react";
 
 const RestaurantInfo = (props) => {
 
