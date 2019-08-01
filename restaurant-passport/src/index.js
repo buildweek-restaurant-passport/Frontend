@@ -11,7 +11,7 @@ import 'semantic-ui-css/semantic.min.css';
 import './css/tailwind.css';
 import { BrowserRouter } from 'react-router-dom';
 
-export const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
 	<Provider store={store}>

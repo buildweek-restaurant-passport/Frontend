@@ -22,16 +22,16 @@ export const searchPosts = (payload) => {
 }
 
 
-export const toggleFavAction = (episode, state, dispatch) => {
-  const episodeInFavourites = state.favourites.includes(episode);
-  let dispatchObj = {
-    type: "ADD_FAV",
-    payload: episode
-  };
-  if (episodeInFavourites)
-    dispatchObj = {
-      type: "REMOVE_FAV",
-      payload: state.favourites.filter(fav => fav.id !== episode.id)
-    };
-  return dispatch(dispatchObj);
-};
+// export const toggleFavAction = (episode, state, dispatch) => {
+//   const episodeInFavourites = state.favourites.includes(episode);
+//   let dispatchObj = {
+//     type: "ADD_FAV",
+//     payload: episode
+//   };
+//   if (episodeInFavourites)
+//     dispatchObj = {
+//       type: "REMOVE_FAV",
+//       payload: state.favourites.filter(fav => fav.id !== episode.id)
+//     };
+//   return dispatch(dispatchObj);
+// };

@@ -13,8 +13,7 @@ import {
 } from "semantic-ui-react";
 import _ from "lodash";
 
-import { SEARCH } from "../../../actions/Restaurants";
-import { store } from '../../../index.js'
+
 const SearchBar = props => {
 
   const handleChange = e => {
@@ -58,6 +57,7 @@ const SearchBar = props => {
   };
 
   return (
+
                   <Input
                 onChange={handleChange}
                 placeholder="search posts..."
@@ -78,6 +78,8 @@ const SearchBar = props => {
   //     resultRenderer={resultRenderer}
   //   />
   // )
+
+
 }
 
 export default SearchBar
