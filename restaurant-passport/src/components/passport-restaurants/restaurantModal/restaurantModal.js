@@ -12,6 +12,9 @@ const RestaurantModal = (props) => {
 
   const {savedRestaurants} = props
 
+  const {visitedChecked} = props
+
+
 
   const toggleCardButtons = () => {
     setCardHovered(!cardHovered)
@@ -68,7 +71,7 @@ const RestaurantModal = (props) => {
             <p className="rest-details">{`${props.rest.city}, ${props.rest.country}`}</p>
             <p className="rest-details">{`${props.rest.type}`}</p>
             <div className="add-remove-buttons">
-              {checked && cardHovered && (
+              { checked && cardHovered && (
                 <button className="add" onClick={handleClick}>
                   <Icon
                     name="minus"
@@ -78,7 +81,7 @@ const RestaurantModal = (props) => {
                   />
                 </button>
               )}
-              {!checked && cardHovered &&(
+              {!visitedChecked && !checked && cardHovered && (
                 <button className="remove" onClick={handleClick}>
                   <Icon
                     name="plus"
