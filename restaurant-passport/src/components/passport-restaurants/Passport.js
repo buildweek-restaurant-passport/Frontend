@@ -41,16 +41,8 @@ const Passport = props => {
 	const [ savedRestaurants, setSavedRestaurants ] = useState([]);
 
 	useEffect(
-		() => {
-			console.log(savedRestaurants);
-		},
-		[ savedRestaurants ],
-	);
+		() => {},[ savedRestaurants ],);
 
-	const dropDownOptions = [
-		{ key: 'all', value: props.restaurants.body, text: 'All Restaurants' },
-		{ key: 'saved', value: savedRestaurants, text: 'Saved Restaurants' },
-	];
 
 	return (
 		<Container style={{ marginTop: '3em' }} className='content-container'>
@@ -64,8 +56,8 @@ const Passport = props => {
             
             setCols={setCols}
           />*/}
-					<Input onChange={searchRestaurantsHandler} placeholder='search restaurants...' />
-					{<Checkbox label='Show Visited' onChange={toggle} checked={visitedChecked} className='checkbox' />}
+					<Input onChange={searchRestaurantsHandler} placeholder='Search For Your Next Eat . . .'  className = 'search-bar-header' />
+					{<Checkbox label='Stamped Restaurants' onChange={toggle} checked={visitedChecked} className='checkbox' />}
 				</div>
 			</div>
 

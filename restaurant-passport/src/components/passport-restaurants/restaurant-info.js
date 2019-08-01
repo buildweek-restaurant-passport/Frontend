@@ -43,7 +43,7 @@ const RestaurantInfo = (props) => {
 
         setCardHovered(cardHovered => !cardHovered)
 
-      },[setChecked])
+      },[setChecked ])
 
     return (
 
