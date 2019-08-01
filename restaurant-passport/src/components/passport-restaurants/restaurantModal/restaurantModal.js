@@ -5,7 +5,7 @@ import RestaurantInfo from "../../restaurant-info/restaurant-info";
 
 const RestaurantModal = (props) => {
 
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
   const [cardHovered, setCardHovered] = useState(false);
   
   const {setSavedRestaurants} = props
@@ -38,6 +38,10 @@ const RestaurantModal = (props) => {
     setChecked(!checked)
   }
 
+  useEffect (() =>{
+    // console.log(checked)
+  },[checked])
+  
   return (
     <div className="px-6 py-4" onMouseEnter = {toggleCardButtons} onMouseLeave = {toggleCardButtons}>
       <Modal
@@ -63,16 +67,6 @@ const RestaurantModal = (props) => {
               {checked && cardHovered && (
                 <button className="add" onClick={handleClick}>
                   <Icon
-                    name="plus"
-                    style={{ color: "#085f63", fontSize: "25px" }}
-                    className="addBtn"
-                    onClick = {addToSavedList}
-                  />
-                </button>
-              )}
-              {!checked && cardHovered &&(
-                <button className="remove" onClick={handleClick}>
-                  <Icon
                     name="minus"
                     style={{ color: "#FF2400", fontSize: "25px" }}
                     className="removeBtn"
@@ -80,11 +74,21 @@ const RestaurantModal = (props) => {
                   />
                 </button>
               )}
+              {!checked && cardHovered &&(
+                <button className="remove" onClick={handleClick}>
+                  <Icon
+                    name="plus"
+                    style={{ color: "#085f63", fontSize: "25px" }}
+                    className="addBtn"
+                    onClick = {addToSavedList}
+                  />
+                </button>
+              )}
             </div>
           </Button>
         }
       >
-        <RestaurantInfo info = {props} />
+        <RestaurantInfo info = {props}  setSavedRestaurants = {setSavedRestaurants} savedRestaurants = {savedRestaurants} setChecked = {setChecked} checked = {checked} setCardHovered = {setCardHovered}/>
       </Modal>
     </div>
   );

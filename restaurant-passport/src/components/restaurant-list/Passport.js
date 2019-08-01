@@ -45,7 +45,7 @@ const Passport = props => {
   const [savedRestaurants, setSavedRestaurants] = useState([])
 
   useEffect(()=>{
-    console.log(savedRestaurants)
+    // console.log(savedRestaurants)
   },[savedRestaurants])
 
 
