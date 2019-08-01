@@ -54,7 +54,7 @@ const RestaurantModal = (props) => {
         trigger={
           <Button basic className="column basic restaurant-card" as="div">
             <p className="rest-details rest-name">
-              {props.name}
+              {props.rest.name}
               {checked && <Icon
                 name="check"
                 style={{
@@ -65,8 +65,8 @@ const RestaurantModal = (props) => {
                 }}
               />}
             </p>
-            <p className="rest-details">{`${props.city}, ${props.country}`}</p>
-            <p className="rest-details">{`${props.type}`}</p>
+            <p className="rest-details">{`${props.rest.city}, ${props.rest.country}`}</p>
+            <p className="rest-details">{`${props.rest.type}`}</p>
             <div className="add-remove-buttons">
               {checked && cardHovered && (
                 <button className="add" onClick={handleClick}>
@@ -92,7 +92,7 @@ const RestaurantModal = (props) => {
           </Button>
         }
       >
-        <RestaurantInfo info = {props}  setSavedRestaurants = {setSavedRestaurants} savedRestaurants = {savedRestaurants} setChecked = {setChecked} checked = {checked} setCardHovered = {setCardHovered}/>
+        <RestaurantInfo info = {props.rest}  setSavedRestaurants = {setSavedRestaurants} savedRestaurants = {savedRestaurants} setChecked = {setChecked} checked = {checked} setCardHovered = {setCardHovered}/>
       </Modal>
     </div>
   );
