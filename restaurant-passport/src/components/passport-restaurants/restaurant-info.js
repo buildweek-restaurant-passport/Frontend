@@ -17,7 +17,10 @@ const RestaurantInfo = (props) => {
 
     const addToSavedList = (event) => {
         setSavedRestaurants(savedRestaurants => [...savedRestaurants, {...props.info}])
+
         setChecked(true)
+
+
     }
     
     const removeFromSavedList = (event) => {
@@ -27,7 +30,11 @@ const RestaurantInfo = (props) => {
         //removing item from array
         savedRestaurants.splice(itemToRemove, 1)
         setSavedRestaurants(savedRestaurants => [...savedRestaurants])
+
         setChecked(false)
+
+
+
     }
     
     //reseting cards hovered state back to false
