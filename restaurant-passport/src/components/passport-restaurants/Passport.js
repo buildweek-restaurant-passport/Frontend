@@ -1,24 +1,12 @@
 import React, {
   useState,
   useEffect,
-  useReducer,
-  useContext,
-  createContext
 } from "react";
 
 import { getRestaurants } from "../../actions/Restaurants"; //redux
 import { connect } from "react-redux"; //redux
-import {
-  Container,
-  Header,
-  Grid,
-  Checkbox,
-  Input,
-  Loader,
-  Dropdown
-} from "semantic-ui-react";
-import axios from "axios";
-import RestaurantModal from "../passport-restaurants/restaurantModal/restaurantModal";
+import { Container, Header, Grid, Checkbox, Input, Loader } from "semantic-ui-react";
+import RestaurantModal from './restaurantModal/restaurantModal'
 //import SearchBar from "../passport-restaurants/searchBar/searchBar";
 // import { SEARCH } from "../../actions/Restaurants";
 // import { store } from "../../index.js";
@@ -26,10 +14,10 @@ import RestaurantModal from "../passport-restaurants/restaurantModal/restaurantM
 const Passport = props => {
   const { getRestaurants } = props;
   //checking state of stamped , if true  checkmark will be added to component
-  const [stamped, setStamped] = useState(true);
-  const [visitedChecked, setVisitedChecked] = useState(false);
+  // const [stamped, setStamped] = useState(true);
+  const [checked, setChecked] = useState(true);
   const [cols, setCols] = useState(4);
-  const [hovered, setHovered] = useState(false);
+  // const [hovered, setHovered] = useState(false);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searching, setSearching] = useState(false);
 

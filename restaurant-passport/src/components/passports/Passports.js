@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import './access/access.scss';
+import '../../css/access.scss';
 
 import passportImage from "../assests/images/passsport.jpg";
 
@@ -17,8 +17,8 @@ const Passports = () => {
 				circular
 				centered
 				as={Link}
-				to="/restaurants"
-				/>
+				to='/restaurants'
+			/>
 		</div>
 	);
 };

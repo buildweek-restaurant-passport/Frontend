@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from "react";
 import { Icon, Modal, Button } from "semantic-ui-react";
 import _ from "lodash";
-import RestaurantInfo from "../../restaurant-info/restaurant-info";
+import RestaurantInfo from "../restaurant-info";
 
 const RestaurantModal = (props) => {
 
