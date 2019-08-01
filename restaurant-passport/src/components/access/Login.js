@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
-import { Button, Form as UIForm } from 'semantic-ui-react';
+import { Form as UIForm } from 'semantic-ui-react';
 
 const Login = props => {
 	return (

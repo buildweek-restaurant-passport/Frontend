@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from "react";
 import { Icon, Modal, Button } from "semantic-ui-react";
 import _ from "lodash";
-import RestaurantInfo from "../../restaurant-info/restaurant-info";
+import RestaurantInfo from "../restaurant-info";
 
 const RestaurantModal = (props) => {
 
@@ -16,8 +16,10 @@ const RestaurantModal = (props) => {
 
 
 
-  const toggleCardButtons = () => {
-    setCardHovered(!cardHovered)
+  const setButtonVisiblity = (value) => {
+    return () => {
+      setCardHovered(value)
+    }
   }
 
   
@@ -50,7 +52,7 @@ const RestaurantModal = (props) => {
   },[cardHovered])
   
   return (
-    <div className="px-6 py-4" onMouseEnter = {toggleCardButtons} onMouseLeave = {toggleCardButtons}>
+    <div className="px-6 py-4" onMouseEnter = {setButtonVisiblity(true)} onMouseLeave = {setButtonVisiblity(false)}>
       <Modal
         style={{ width: "40%" }}
         closeIcon
