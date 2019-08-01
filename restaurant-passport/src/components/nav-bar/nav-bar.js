@@ -23,7 +23,7 @@ const NavBar = (props) => {
                 && <div className = 'nav-links' style = {{width:'44%', color: '#085f63', fontSize:'20px', display:'flex', justifyContent: 'space-between', fontWeight: '800'}}>
                     {props.location.pathname !== '/passports' && <Link to ='/passports'>My Passport</Link>}
                     {props.location.pathname !== '/restaurants' && <Link to ='/restaurants'>Restaurants</Link>}
-                    <Link to ='/'>Log Out</Link>
+                    <Link to ='/' onClick={() => localStorage.setItem('token', '')}>Log Out</Link>
                 </div>
             }
         </div>
