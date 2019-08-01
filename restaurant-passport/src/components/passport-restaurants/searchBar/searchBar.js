@@ -1,16 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Header,
-  Grid,
-  Checkbox,
-  Search,
-  Label,
-  Icon,
-  Modal,
-  Button,
-  Rating
-} from "semantic-ui-react";
+import React, { useState } from "react";
+import { Search, Label} from "semantic-ui-react";
 import _ from "lodash";
 
 const SearchBar = props => {
@@ -55,8 +44,8 @@ const SearchBar = props => {
     <Search
       className= 'search-bar-header'
       loading={isLoading}
-
       onResultSelect={handleResultSelect}
+      placeholder = 'Start Your Search'
       onSearchChange={_.debounce(handleSearchChange, 500, {
         leading: true
       })}
