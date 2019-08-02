@@ -19,19 +19,27 @@
 			padding-top: 90px;
 			font-size: 4rem;
 			color: rgba(8, 95, 99, 1);
-			text-shadow: 0px 0px 20px rgba(245, 225, 218, 1);
+			text-shadow: 0px 0px 5px rgba(245, 225, 218, 1);
 		}
 		.lower-header-content {
-			transform: translateY(-70%);
+			transform: translateY(-200%);
+			display: flex;
+			width: 65%;
+			margin: 0 auto;
+			justify-content: space-between;
+			align-items: center;
 			.search-bar-header {
-				transform: translateY(-150%);
-				.input {
+				width:50%;
+				input {
 					width: 50%;
 					height: 50px;
+					font-size: 1.6rem;
+					color:rgba(8, 95, 99, 1);
+					box-shadow: 0px 0px 500px rgba(8, 95, 99, 1);
 				}
 			}
 			.checkbox {
-				font-size: 2.4rem;
+				font-size: 2rem;
 				font-weight: 700;
 				label {
 					color: white;
@@ -74,4 +82,10 @@
 			}
 		}
 	}
+}
+
+
+
+.nav-links > a {
+	color: inherit;
 }

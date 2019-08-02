@@ -60,7 +60,8 @@ const RestaurantModal = props => {
         style={{ width: "40%" }}
         closeIcon
         trigger={
-          <Button basic className="column basic restaurant-card" as="div">
+          <Button basic 
+          className="column basic restaurant-card" as="div">
             <p className="rest-details rest-name">
               {props.rest.name}
               {checked && (

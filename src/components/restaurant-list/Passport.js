@@ -26,7 +26,10 @@ const Passport = props => {
   const [id, setId] = useState('')
 
 
-  const toggle = () => setChecked(!checked);
+  //const toggle = () => setChecked(!checked);
+const [ visitedChecked, setVisitedChecked ] = useState(false);
+
+const toggle = () => setVisitedChecked(!visitedChecked);
 
   useEffect(() => {
     getRestaurants();
@@ -53,21 +56,18 @@ const Passport = props => {
           Restaurants
         </Header>
         <div className="lower-header-content">
-          {/*          <SearchBar
-            restaurants={props.restaurants}
-            
-            setCols={setCols}
-          />*/}
+
           <Input
             onChange={searchRestaurantsHandler}
-            placeholder="search restaurants..."
+            placeholder='Search For Your Next Eat . . .'  className = 'search-bar-header'
           />
-          <Checkbox
-            label="Show Visited"
-            onChange={toggle}
-            checked={checked}
-            className="checkbox"
-          />
+          {<Checkbox
+                      label='Stamped Restaurants'
+                      onChange={toggle}
+                      checked={checked}
+                      className="checkbox"
+                      checked={visitedChecked}
+                    />}
         </div>
       </div>
 

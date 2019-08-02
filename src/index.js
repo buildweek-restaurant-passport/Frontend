@@ -8,7 +8,6 @@ import rootReducer from './reducers/Restaurants';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import 'semantic-ui-css/semantic.min.css';
-import './css/tailwind.css';
 import { BrowserRouter } from 'react-router-dom';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
