@@ -1,4 +1,4 @@
-
+import {
   FETCH_RESTAURANTS_START,
   FETCH_RESTAURANTS_SUCCESS,
   FETCH_RESTAURANTS_FAIL,
@@ -114,3 +114,5 @@ function RestaurantData(state = initialState, action) {
   }
 }
 export default RestaurantData;
+
+

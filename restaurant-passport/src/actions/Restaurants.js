@@ -1,7 +1,6 @@
 import axios from "axios";
 import { axiosWithAuth } from "../authentication/axiosWithAuth";
 
-
 export const FETCH_RESTAURANTS_START = "FETCH_RESTAURANTS_START";
 export const FETCH_RESTAURANTS_SUCCESS = "FETCH_RESTAURANTS_SUCCESS";
 export const FETCH_RESTAURANTS_FAIL = "FETCH_RESTAURANTS_FAIL";
@@ -27,10 +26,9 @@ export const getRestaurants = () => dispatch => {
     .catch(err => dispatch({ type: FETCH_RESTAURANTS_FAIL, payload: err }));
 };
 
-export const SEARCH = 'SEARCH';
+export const SEARCH = "SEARCH";
 
 export const searchPosts = payload => {
-
   return { type: SEARCH, payload };
 };
 
