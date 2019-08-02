@@ -93,4 +93,4 @@ const mapStateToProps = state => ({
   delRest: state.delRest
 });
 
-export default connect( mapStateToProps, { getRestaurants, getVisited, addVisited })(Passport);
+export default connect(mapStateToProps, { getRestaurants, getVisited, addVisited })(Passport);
