@@ -24,7 +24,7 @@ const Passport = props => {
   const { getRestaurants, getVisited } = props;
   //checking state of stamped , if true  checkmark will be added to component
   const [stamped, setStamped] = useState(true);
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
   const [cols, setCols] = useState(4);
   const [hovered, setHovered] = useState(false);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
@@ -37,7 +37,7 @@ const Passport = props => {
 
   const toggle = () => {
     console.log(props.savedRestaurants)
-    setFilterVisited(!filterVisited)
+    setChecked(!checked)
   };
 
   useEffect(() => {
@@ -71,7 +71,7 @@ const Passport = props => {
             label="Stamped Restaurants"
             onChange={toggle}
             className="checkbox"
-            checked={filterVisited}
+            checked={checked}
           />
         </div>
       </div>
