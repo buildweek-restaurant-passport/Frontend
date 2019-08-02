@@ -22,7 +22,7 @@ const Register = props => {
 				axios
 					.post('https://restaurant-app-appi.herokuapp.com/api/v1/auth/register', values)
 					.then(res => {
-						localStorage.setItem('token', res.data.token);
+						localStorage.setItem('token', res.data.body.token);
 						console.log(props);
 					})
 					.then(() => props.history.push('/passports'))

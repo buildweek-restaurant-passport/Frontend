@@ -88,7 +88,7 @@ const Passport = props => {
           </Grid>
         )}
       </div>
-      <div>{console.log(props.restaurants)}</div>
+      <div>{console.log(props.restaurants && props.savedRestaurants)}</div>
     </Container>
   );
 };
