@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
-import { Button, Form as UIForm } from 'semantic-ui-react';
+import { Form as UIForm } from 'semantic-ui-react';
 
 const Login = props => {
 	return (
@@ -17,8 +17,7 @@ const Login = props => {
 				axios
 					.post('https://restaurant-app-appi.herokuapp.com/api/v1/auth/login', values)
 					.then(res => {
-						localStorage.setItem('token', res.data.token);
-						console.log(props);
+						localStorage.setItem('token', res.data.body.token);
 					})
 					.then(() => props.history.push('/passports'))
 					.catch(err => console.log(err));

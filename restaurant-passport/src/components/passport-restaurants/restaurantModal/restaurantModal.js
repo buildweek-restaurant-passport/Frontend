@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Icon, Modal, Button } from "semantic-ui-react";
 import _ from "lodash";
-import RestaurantInfo from "../../restaurant-info/restaurant-info";
+import RestaurantInfo from "../../passport-restaurants/restaurant-info";
 import { addVisited, delVisited } from "../../../actions/Restaurants"; //redux
 import { connect } from "react-redux"; //redux
+
 
 const RestaurantModal = props => {
   const { id } = props.rest.id;
@@ -35,6 +36,7 @@ const RestaurantModal = props => {
     
   };
 
+
   const handleRemove = event => {
     event.stopPropagation();
     event.preventDefault();
@@ -47,11 +49,13 @@ const RestaurantModal = props => {
   }, [cardHovered]);
 
   return (
+
     <div
       className="px-6 py-4"
       onMouseEnter={toggleCardButtons}
       onMouseLeave={toggleCardButtons}
     >
+
       <Modal
         style={{ width: "40%" }}
         closeIcon
@@ -76,6 +80,7 @@ const RestaurantModal = props => {
             <div className="add-remove-buttons">
               {checked && cardHovered && (
                 <button className="add">
+
                   <Icon
                     name="minus"
                     style={{ color: "#FF2400", fontSize: "25px" }}
@@ -84,8 +89,10 @@ const RestaurantModal = props => {
                   />
                 </button>
               )}
+
               {!checked && cardHovered && (
                 <button className="remove" name="add" value={id}>
+
                   <Icon
                     name="plus"
                     style={{ color: "#085f63", fontSize: "25px" }}
