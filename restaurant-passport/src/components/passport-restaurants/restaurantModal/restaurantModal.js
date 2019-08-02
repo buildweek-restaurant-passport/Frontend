@@ -18,11 +18,6 @@ const RestaurantModal = props => {
   );
   const [cardHovered, setCardHovered] = useState(false);
 
-  const {
-    setSavedRestaurants,
-    savedRestaurants,
-  } = props;
-
   const [restId, setRestId] = useState();
 
   const handleAdd = event => {
@@ -31,13 +26,11 @@ const RestaurantModal = props => {
     props.addVisited(restId);
   };
 
-
   const handleRemove = event => {
     event.stopPropagation();
     event.preventDefault();
     props.delVisited(restId);
   };
-
 
   useEffect(() => {
     setRestId(props.rest.id);
@@ -75,7 +68,6 @@ const RestaurantModal = props => {
             <div className="add-remove-buttons">
               {checked && cardHovered && (
                 <button className="add">
-
                   <Icon
                     name="minus"
                     style={{ color: "#FF2400", fontSize: "25px" }}
@@ -84,7 +76,6 @@ const RestaurantModal = props => {
                   />
                 </button>
               )}
-
               {!checked && cardHovered && (
                 <button className="remove" name="add" value={id}>
 
@@ -119,6 +110,5 @@ const mapStateToProps = state => ({
   addingRest: state.addingRest,
   delRest: state.delRest,
 });
-
 
 export default connect(mapStateToProps, { addVisited, delVisited })(RestaurantModal);
