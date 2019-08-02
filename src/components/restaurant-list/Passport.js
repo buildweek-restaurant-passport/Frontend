@@ -1,9 +1,6 @@
 import React, {
   useState,
-  useEffect,
-  useReducer,
-  useContext,
-  createContext
+  useEffect
 } from "react";
 
 import { getRestaurants } from "../../actions/Restaurants"; //redux
@@ -17,21 +14,14 @@ import {
   Input,
   Loader
 } from "semantic-ui-react";
-import axios from "axios";
 import RestaurantModal from "../passport-restaurants/restaurantModal/restaurantModal";
 
 const Passport = props => {
   const { getRestaurants, getVisited } = props;
-  //checking state of stamped , if true  checkmark will be added to component
-  const [stamped, setStamped] = useState(true);
   const [checked, setChecked] = useState(false);
   const [cols, setCols] = useState(4);
-  const [hovered, setHovered] = useState(false);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searching, setSearching] = useState(false);
-  const [id, setId] = useState("");
-
-  const [filterVisited, setFilterVisited] = useState(false);
 
 
 
@@ -43,7 +33,7 @@ const Passport = props => {
   useEffect(() => {
     getRestaurants();
     getVisited();
-  }, [getRestaurants, getVisited, props.addingRest, props.delRest]);
+  }, [getRestaurants, getVisited]);
 
   const searchRestaurantsHandler = e => {
     const restaurants = props.restaurants.body.filter(r => {
@@ -86,7 +76,7 @@ const Passport = props => {
                                 <RestaurantModal
                                   rest={rest}
                                   key={rest.id}
-                                  savedRestaurants={props.savedRestaurants}
+                                  
                                 />
                               )))
               : checked? (
@@ -94,7 +84,7 @@ const Passport = props => {
                   <RestaurantModal
                     rest={rest}
                     key={rest.id}
-                    savedRestaurants={props.savedRestaurants}
+                    
                   />
                 ))
                 )
@@ -102,7 +92,7 @@ const Passport = props => {
                   <RestaurantModal
                     rest={rest}
                     key={rest.id}
-                    savedRestaurants={props.savedRestaurants}
+                    
                   />
                 ))
             }

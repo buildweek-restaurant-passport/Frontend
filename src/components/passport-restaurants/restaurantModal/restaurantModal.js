@@ -2,15 +2,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Icon, Modal, Button } from "semantic-ui-react";
 import _ from "lodash";
 import RestaurantInfo from "../../passport-restaurants/restaurant-info";
-import { addVisited, delVisited } from "../../../actions/Restaurants"; //redux
+import { addVisited, delVisited, getVisited } from "../../../actions/Restaurants"; //redux
 import { connect } from "react-redux"; //redux
 
 
 const RestaurantModal = props => {
   const { id } = props.rest.id;
-  const xyz =
-    props.savedRestaurants.body.findIndex(rest => rest.id === props.rest.id) >
-    -1;
+
 
   const [checked, setChecked] = useState(
     props.savedRestaurants.body.findIndex(rest => rest.id === props.rest.id) >
@@ -18,21 +16,18 @@ const RestaurantModal = props => {
   );
   const [cardHovered, setCardHovered] = useState(false);
 
-  const { setSavedRestaurants } = props;
-
-  const { savedRestaurants } = props;
-
   const toggleCardButtons = () => {
     setCardHovered(!cardHovered);
   };
 
  
-  const [restId, setRestId] = useState();
+  const [restId, setRestId] = useState(props.rest.id);
 
   const handleAdd = event => {
     event.stopPropagation();
     event.preventDefault();
     props.addVisited(restId);
+    setChecked(true)
     
   };
 
@@ -41,6 +36,7 @@ const RestaurantModal = props => {
     event.stopPropagation();
     event.preventDefault();
     props.delVisited(restId)
+    setChecked(false)
   };
 
 
@@ -90,7 +86,6 @@ const RestaurantModal = props => {
                   />
                 </button>
               )}
-
               {!checked && cardHovered && (
                 <button className="remove" name="add" value={id}>
 
@@ -108,11 +103,10 @@ const RestaurantModal = props => {
       >
         <RestaurantInfo
           info={props.rest}
-          setSavedRestaurants={props.setSavedRestaurants}
           savedRestaurants={props.savedRestaurants}
-          setChecked={setChecked}
           checked={checked}
-          setCardHovered={setCardHovered}
+          setChecked={setChecked}
+
         />
       </Modal>
     </div>
@@ -123,6 +117,7 @@ const RestaurantModal = props => {
 const mapStateToProps = state => ({
   error: state.error,
   addingRest: state.addingRest,
+  savedRestaurants: state.savedRestaurants,
   delRest: state.delRest
 });
 
@@ -130,6 +125,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { addVisited,
+    getVisited,
     delVisited
    }
 )(RestaurantModal);
