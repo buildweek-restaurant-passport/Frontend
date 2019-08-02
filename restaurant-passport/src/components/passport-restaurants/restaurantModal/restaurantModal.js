@@ -52,12 +52,16 @@ const RestaurantModal = (props) => {
   },[cardHovered])
   
   return (
-    <div className="px-6 py-4" onMouseEnter = {setButtonVisiblity(true)} onMouseLeave = {setButtonVisiblity(false)}>
+    <div className="px-6 py-4" >
       <Modal
         style={{ width: "40%" }}
         closeIcon
         trigger={
-          <Button basic className="column basic restaurant-card" as="div">
+          <Button basic
+          className="column basic restaurant-card"
+          as="div"
+          onMouseEnter={() => setCardHovered(true)}
+          onMouseLeave={() => setCardHovered(false)}>
             <p className="rest-details rest-name">
               {props.rest.name}
               {checked && <Icon
