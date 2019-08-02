@@ -1,5 +1,8 @@
+// * {border: 1px solid red !important;}
+
 .content-container {
 	width: 100% !important;
+
 	.header {
 		width: 100%;
 		height: 575px;
@@ -15,21 +18,26 @@
 			url(https://mynewsla.com/wp-content/uploads/2015/08/restaurant-691397_1280.jpg) no-repeat center bottom
 				fixed;
 		background-size: cover;
+
 		.city-name {
 			padding-top: 90px;
 			font-size: 4rem;
 			color: rgba(8, 95, 99, 1);
 			text-shadow: 0px 0px 20px rgba(245, 225, 218, 1);
 		}
+
 		.lower-header-content {
 			transform: translateY(-70%);
+
 			.search-bar-header {
 				transform: translateY(-150%);
+
 				.input {
 					width: 50%;
 					height: 50px;
 				}
 			}
+
 			.checkbox {
 				font-size: 2.4rem;
 				font-weight: 700;
@@ -40,11 +48,14 @@
 			}
 		}
 	}
+
 	.restaurant-container {
 		transform: translateY(1%);
 		width: 75%;
 		margin: 0 auto;
+
 		.restaurant-card {
+			background-color: blue !important;
 			margin: 30px;
 			height: 350px;
 			width: 300px;
@@ -54,16 +65,19 @@
 			align-content: center;
 			padding: 20px;
 			text-align: left;
+
 			.rest-details {
 				width: 88%;
 				margin: 0 auto;
 				font-size: 1.6rem;
 				font-weight: 600;
 			}
+
 			.rest-name {
 				font-size: 2.2rem;
 				font-weight: 800;
 			}
+
 			.add-remove-buttons {
 				width: 88%;
 				margin: 0 auto;

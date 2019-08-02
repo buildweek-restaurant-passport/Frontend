@@ -1,15 +1,15 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import './App.css';
-import './css/access.scss';
 import Passport from './components/restaurant-list/Passport.js';
 import Passports from './components/passports/Passports';
 import NavBar from './components/nav-bar/nav-bar';
 import Landing from './components/access/Landing';
-import './App.css';
-import './css/passport.scss';
 import PrivateRouteWithProps from './authentication/PrivateRouteWithProps';
+
+import './App.css';
+import './css/access.scss';
+import './css/passport.scss';
 
 function App() {
 	return (

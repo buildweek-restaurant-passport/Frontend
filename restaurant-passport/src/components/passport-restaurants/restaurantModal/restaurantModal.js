@@ -18,49 +18,44 @@ const RestaurantModal = props => {
   );
   const [cardHovered, setCardHovered] = useState(false);
 
-  const { setSavedRestaurants } = props;
+  const {
+    setSavedRestaurants,
+    savedRestaurants,
+  } = props;
 
-  const { savedRestaurants } = props;
-
-  const toggleCardButtons = () => {
-    setCardHovered(!cardHovered);
-  };
-
- 
   const [restId, setRestId] = useState();
 
   const handleAdd = event => {
     event.stopPropagation();
     event.preventDefault();
     props.addVisited(restId);
-    
   };
 
 
   const handleRemove = event => {
     event.stopPropagation();
     event.preventDefault();
-    props.delVisited(restId)
+    props.delVisited(restId);
   };
 
 
   useEffect(() => {
-    setRestId(props.rest.id)
+    setRestId(props.rest.id);
   }, [cardHovered]);
 
   return (
-
-    <div
-      className="px-6 py-4"
-      onMouseEnter={toggleCardButtons}
-      onMouseLeave={toggleCardButtons}
-    >
-
+    <div className="px-6 py-4">
       <Modal
         style={{ width: "40%" }}
         closeIcon
         trigger={
-          <Button basic className="column basic restaurant-card" as="div">
+          <Button
+            basic
+            className="column basic restaurant-card"
+            as="div"
+            onMouseEnter={() => setCardHovered(true)}
+            onMouseLeave={() => setCardHovered(false)}
+          >
             <p className="rest-details rest-name">
               {props.rest.name}
               {checked && (
@@ -122,13 +117,8 @@ const RestaurantModal = props => {
 const mapStateToProps = state => ({
   error: state.error,
   addingRest: state.addingRest,
-  delRest: state.delRest
+  delRest: state.delRest,
 });
 
 
-export default connect(
-  mapStateToProps,
-  { addVisited,
-    delVisited
-   }
-)(RestaurantModal);
+export default connect(mapStateToProps, { addVisited, delVisited })(RestaurantModal);
