@@ -30,10 +30,7 @@ const RestaurantInfo = (props) => {
   }, [setChecked]);
 
   return (
-    <div
-      style = {{margin:'20px'}}
-      
-    >
+    <div style = {{margin:'20px'}}>
       <Modal.Header
         style = {{
           fontSize: '2.4rem',
@@ -98,7 +95,6 @@ const RestaurantInfo = (props) => {
             <Icon name='checkmark' />Add To Passport
             </Button>
           }
-
             {checked &&
               <Button
                 secondary

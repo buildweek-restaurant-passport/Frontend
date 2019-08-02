@@ -47,17 +47,11 @@ const Passport = props => {
 
   return (
     <Container style={{ marginTop: "3em" }} className="content-container">
-
       <div className="header">
         <Header as="h1" className="city-name">
           Restaurants
         </Header>
         <div className="lower-header-content">
-          {/*          <SearchBar
-            restaurants={props.restaurants}
-            
-            setCols={setCols}
-          />*/}
           <Input
             onChange={searchRestaurantsHandler}
             placeholder="search restaurants..."
@@ -72,21 +66,20 @@ const Passport = props => {
       </div>
 
       <div className="min-h-screen flex items-center justify-center restaurant-container">
-        {props.isFetching ? (
-          <Loader>Loading</Loader>
-        ) : (
-          <Grid centered columns={cols}>
-            {searching
-              ? 
-                filteredRestaurants.map(rest => (
-                  <RestaurantModal rest={rest} key={rest.id}  savedRestaurants= {props.savedRestaurants}/>
-                ))
-              : 
-              props.restaurants.body.map(rest => (
-                  <RestaurantModal rest={rest} key={rest.id}   savedRestaurants= {props.savedRestaurants}/>
-                ))}
-          </Grid>
-        )}
+        {props.isFetching
+          ? (<Loader>Loading</Loader>)
+          : (<Grid centered columns={cols}>
+              {searching
+                ? 
+                  filteredRestaurants.map(rest => (
+                    <RestaurantModal rest={rest} key={rest.id}  savedRestaurants= {props.savedRestaurants}/>
+                  ))
+                : 
+                props.restaurants.body.map(rest => (
+                    <RestaurantModal rest={rest} key={rest.id}   savedRestaurants= {props.savedRestaurants}/>
+                  ))}
+            </Grid>)
+        }
       </div>
       <div>{console.log(props.restaurants)}</div>
     </Container>
