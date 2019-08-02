@@ -23,7 +23,7 @@ const Passport = props => {
   const [hovered, setHovered] = useState(false);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searching, setSearching] = useState(false);
-  const [id, setId] = useState('')
+  const [id, setId] = useState('');
 
 
   const toggle = () => setChecked(!checked);
@@ -48,9 +48,7 @@ const Passport = props => {
   return (
     <Container style={{ marginTop: "3em" }} className="content-container">
       <div className="header">
-        <Header as="h1" className="city-name">
-          Restaurants
-        </Header>
+        <Header as="h1" className="city-name">Restaurants</Header>
         <div className="lower-header-content">
           <Input
             onChange={searchRestaurantsHandler}
@@ -70,14 +68,13 @@ const Passport = props => {
           ? (<Loader>Loading</Loader>)
           : (<Grid centered columns={cols}>
               {searching
-                ? 
-                  filteredRestaurants.map(rest => (
+                ? filteredRestaurants.map(rest => (
                     <RestaurantModal rest={rest} key={rest.id}  savedRestaurants= {props.savedRestaurants}/>
                   ))
-                : 
-                props.restaurants.body.map(rest => (
+                : props.restaurants.body.map(rest => (
                     <RestaurantModal rest={rest} key={rest.id}   savedRestaurants= {props.savedRestaurants}/>
-                  ))}
+                  ))
+              }
             </Grid>)
         }
       </div>
@@ -96,7 +93,4 @@ const mapStateToProps = state => ({
   delRest: state.delRest
 });
 
-export default connect(
-  mapStateToProps,
-  { getRestaurants,getVisited,addVisited }
-)(Passport);
+export default connect( mapStateToProps, { getRestaurants, getVisited, addVisited })(Passport);
