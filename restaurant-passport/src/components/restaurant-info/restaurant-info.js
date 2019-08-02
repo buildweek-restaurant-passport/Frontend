@@ -1,5 +1,7 @@
-import React ,{useEffect}from "react";
+import React ,{useEffect, useState}from "react";
 import { Card, Button, Icon, Header, Modal } from "semantic-ui-react";
+import { addVisited, delVisited } from "../../actions/Restaurants"; //redux
+import { connect } from "react-redux"; //redux
 
 const RestaurantInfo = (props) => {
 
@@ -14,6 +16,20 @@ const RestaurantInfo = (props) => {
     const {savedRestaurants} = props
     
     const {setCardHovered} = props
+    const [restId, setRestId] = useState(props.info.id);
+
+  const handleAdd = event => {
+    event.stopPropagation();
+    event.preventDefault();
+    props.addVisited(restId);
+    
+  };
+
+  const handleRemove = event => {
+    event.stopPropagation();
+    event.preventDefault();
+    props.delVisited(restId)
+  };
 
     const addToSavedList = (event) => {
         setSavedRestaurants(savedRestaurants => [...savedRestaurants, {...props.info}])
@@ -64,11 +80,11 @@ const RestaurantInfo = (props) => {
 
             <Modal.Actions style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', flexDirection: 'column' }}>
 
-                {!checked && <Button primary style={{ backgroundColor: "#49beb7", color: '#f1f1f1', width: '75%', margin: '8px auto' }} onClick={addToSavedList}>
+                {!checked && <Button primary style={{ backgroundColor: "#49beb7", color: '#f1f1f1', width: '75%', margin: '8px auto' }} onClick={handleAdd}>
                     <Icon name='checkmark' />Add To Passport
                     </Button>}
 
-                {checked && <Button secondary style={{ backgroundColor: "#085f63", color: '#f1f1f1', width: '75%', margin: '8px auto' }} onClick={removeFromSavedList}>
+                {checked && <Button secondary style={{ backgroundColor: "#085f63", color: '#f1f1f1', width: '75%', margin: '8px auto' }} onClick={handleRemove}>
                     <Icon name='remove' /> Remove From Passport
                     </Button>}
 
@@ -81,4 +97,18 @@ const RestaurantInfo = (props) => {
 
 };
 
-export default RestaurantInfo;
+//export default RestaurantInfo;
+
+const mapStateToProps = state => ({
+  error: state.error,
+  addingRest: state.addingRest,
+  delRest: state.delRest
+});
+
+
+export default connect(
+  mapStateToProps,
+  { addVisited,
+    delVisited
+   }
+)(RestaurantInfo);

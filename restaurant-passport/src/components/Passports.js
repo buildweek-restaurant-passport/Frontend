@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Header, Image } from 'semantic-ui-react';
 import './access/access.scss';
-
+import { getVisited } from "../actions/Restaurants"; //redux
+import { connect } from "react-redux"; //redux
 // import {
 //   Container,
 //   Header,
@@ -29,7 +30,7 @@ const dummyData = [
 	// },
 ];
 
-const Passports = () => {
+const Passports = props => {
 	const [ activePassportId, setActivePassportId ] = useLocalStorage('passportId');
 	const [ passports, setPassports ] = useState();
 
@@ -44,7 +45,6 @@ const Passports = () => {
 			}
 		})();
 	};
-	useEffect(retrievePassports, []);
 
 	const selectPassportFactory = id => () => setActivePassportId(id);
 
@@ -90,3 +90,4 @@ const Passports = () => {
 };
 
 export default Passports;
+
