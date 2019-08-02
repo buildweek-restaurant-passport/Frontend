@@ -9,10 +9,16 @@ import React, {
 import { getRestaurants } from "../../actions/Restaurants"; //redux
 import { getVisited, addVisited } from "../../actions/Restaurants"; //redux
 import { connect } from "react-redux"; //redux
-import { Container, Header, Grid, Checkbox, Input, Loader } from "semantic-ui-react";
+import {
+  Container,
+  Header,
+  Grid,
+  Checkbox,
+  Input,
+  Loader
+} from "semantic-ui-react";
 import axios from "axios";
-import RestaurantModal from '../passport-restaurants/restaurantModal/restaurantModal'
-
+import RestaurantModal from "../passport-restaurants/restaurantModal/restaurantModal";
 
 const Passport = props => {
   const { getRestaurants, getVisited } = props;
@@ -23,19 +29,21 @@ const Passport = props => {
   const [hovered, setHovered] = useState(false);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searching, setSearching] = useState(false);
-  const [id, setId] = useState('')
+  const [id, setId] = useState("");
+
+  const [filterVisited, setFilterVisited] = useState(false);
 
 
-  //const toggle = () => setChecked(!checked);
-const [ visitedChecked, setVisitedChecked ] = useState(false);
 
-const toggle = () => setVisitedChecked(!visitedChecked);
+  const toggle = () => {
+    console.log(props.savedRestaurants)
+    setFilterVisited(!filterVisited)
+  };
 
   useEffect(() => {
     getRestaurants();
     getVisited();
-  }, [getRestaurants,getVisited,props.addingRest, props.delRest]);
-
+  }, [getRestaurants, getVisited, props.addingRest, props.delRest]);
 
   const searchRestaurantsHandler = e => {
     const restaurants = props.restaurants.body.filter(r => {
@@ -47,27 +55,24 @@ const toggle = () => setVisitedChecked(!visitedChecked);
     setFilteredRestaurants(restaurants);
   };
 
-
   return (
     <Container style={{ marginTop: "3em" }} className="content-container">
-
       <div className="header">
         <Header as="h1" className="city-name">
           Restaurants
         </Header>
         <div className="lower-header-content">
-
           <Input
             onChange={searchRestaurantsHandler}
-            placeholder='Search For Your Next Eat . . .'  className = 'search-bar-header'
+            placeholder="Search For Your Next Eat . . ."
+            className="search-bar-header"
           />
-          {<Checkbox
-                      label='Stamped Restaurants'
-                      onChange={toggle}
-                      checked={checked}
-                      className="checkbox"
-                      checked={visitedChecked}
-                    />}
+          <Checkbox
+            label="Stamped Restaurants"
+            onChange={toggle}
+            className="checkbox"
+            checked={filterVisited}
+          />
         </div>
       </div>
 
@@ -77,14 +82,30 @@ const toggle = () => setVisitedChecked(!visitedChecked);
         ) : (
           <Grid centered columns={cols}>
             {searching
-              ? 
-                filteredRestaurants.map(rest => (
-                  <RestaurantModal rest={rest} key={rest.id}  savedRestaurants= {props.savedRestaurants}/>
+              ? (filteredRestaurants.map(rest => (
+                                <RestaurantModal
+                                  rest={rest}
+                                  key={rest.id}
+                                  savedRestaurants={props.savedRestaurants}
+                                />
+                              )))
+              : checked? (
+                props.savedRestaurants.body.map(rest => (
+                  <RestaurantModal
+                    rest={rest}
+                    key={rest.id}
+                    savedRestaurants={props.savedRestaurants}
+                  />
                 ))
-              : 
-              props.restaurants.body.map(rest => (
-                  <RestaurantModal rest={rest} key={rest.id}   savedRestaurants= {props.savedRestaurants}/>
-                ))}
+                )
+              : props.restaurants.body.map(rest => (
+                  <RestaurantModal
+                    rest={rest}
+                    key={rest.id}
+                    savedRestaurants={props.savedRestaurants}
+                  />
+                ))
+            }
           </Grid>
         )}
       </div>
@@ -105,5 +126,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getRestaurants,getVisited,addVisited }
+  { getRestaurants, getVisited, addVisited }
 )(Passport);
