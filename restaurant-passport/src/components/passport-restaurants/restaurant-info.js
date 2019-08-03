@@ -3,8 +3,6 @@ import { Card, Button, Icon, Modal } from "semantic-ui-react";
 
 const RestaurantInfo = (props) => {
 
-    console.log(props)
-
     const {setChecked} = props
 
     const {checked} = props
@@ -15,12 +13,11 @@ const RestaurantInfo = (props) => {
     
     const {setCardHovered} = props
 
+    const {visitedChecked} = props
+
     const addToSavedList = (event) => {
         setSavedRestaurants(savedRestaurants => [...savedRestaurants, {...props.info}])
-
         setChecked(true)
-
-
     }
     
     const removeFromSavedList = (event) => {
@@ -32,8 +29,6 @@ const RestaurantInfo = (props) => {
         setSavedRestaurants(savedRestaurants => [...savedRestaurants])
 
         setChecked(false)
-
-
 
     }
     
@@ -71,7 +66,7 @@ const RestaurantInfo = (props) => {
 
             <Modal.Actions style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', flexDirection: 'column' }}>
 
-                {!checked && <Button primary style={{ backgroundColor: "#49beb7", color: '#f1f1f1', width: '75%', margin: '8px auto' }} onClick={addToSavedList}>
+                {visitedChecked || !checked && <Button primary style={{ backgroundColor: "#49beb7", color: '#f1f1f1', width: '75%', margin: '8px auto' }} onClick={addToSavedList}>
                     <Icon name='checkmark' />Add To Passport
                     </Button>}
 

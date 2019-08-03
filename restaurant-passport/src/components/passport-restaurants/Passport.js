@@ -5,17 +5,13 @@ import { connect } from 'react-redux'; //redux
 import { Container, Header, Grid, Checkbox, Input, Loader, Dropdown } from 'semantic-ui-react';
 import axios from 'axios';
 import RestaurantModal from '../passport-restaurants/restaurantModal/restaurantModal';
-//import SearchBar from "../passport-restaurants/searchBar/searchBar";
-// import { SEARCH } from "../../actions/Restaurants";
-// import { store } from "../../index.js";
+
 
 const Passport = props => {
 	const { getRestaurants } = props;
 	//checking state of stamped , if true  checkmark will be added to component
-	const [ stamped, setStamped ] = useState(true);
 	const [ visitedChecked, setVisitedChecked ] = useState(false);
 	const [ cols, setCols ] = useState(4);
-	const [ hovered, setHovered ] = useState(false);
 	const [ filteredRestaurants, setFilteredRestaurants ] = useState([]);
 	const [ searching, setSearching ] = useState(false);
 
@@ -40,10 +36,6 @@ const Passport = props => {
 
 	const [ savedRestaurants, setSavedRestaurants ] = useState([]);
 
-	useEffect(
-		() => {},[ savedRestaurants ],);
-
-
 	return (
 		<Container style={{ marginTop: '3em' }} className='content-container'>
 			<div className='header'>
@@ -51,11 +43,6 @@ const Passport = props => {
 					Restaurants
 				</Header>
 				<div className='lower-header-content'>
-					{/*          <SearchBar
-            restaurants={props.restaurants}
-            
-            setCols={setCols}
-          />*/}
 					<Input onChange={searchRestaurantsHandler} placeholder='Search For Your Next Eat . . .'  className = 'search-bar-header' />
 					{<Checkbox label='Stamped Restaurants' onChange={toggle} checked={visitedChecked} className='checkbox' />}
 				</div>
@@ -73,6 +60,7 @@ const Passport = props => {
 									key={rest.id}
 									setSavedRestaurants={setSavedRestaurants}
 									savedRestaurants={savedRestaurants}
+									visitedChecked={visitedChecked}
 								/>
 							))
 						) : visitedChecked ? (
@@ -92,6 +80,7 @@ const Passport = props => {
 									key={rest.id}
 									setSavedRestaurants={setSavedRestaurants}
 									savedRestaurants={savedRestaurants}
+									visitedChecked={visitedChecked}
 								/>
 							))
 						)}

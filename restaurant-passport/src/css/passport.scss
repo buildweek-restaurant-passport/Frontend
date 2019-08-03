@@ -54,8 +54,8 @@
 		margin: 0 auto;
 		.restaurant-card {
 			margin: 30px;
-			height: 350px;
-			width: 300px;
+			height: 320px;
+			width: 275px;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
@@ -63,7 +63,7 @@
 			padding: 20px;
 			text-align: left;
 			.rest-details {
-				width: 88%;
+				width: 100%;
 				margin: 0 auto;
 				font-size: 1.6rem;
 				font-weight: 600;

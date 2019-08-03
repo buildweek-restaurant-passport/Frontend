@@ -43,9 +43,6 @@ const RestaurantModal = (props) => {
     setChecked(!checked)
   }
 
-  useEffect (() =>{
-    // console.log(checked)
-  },[checked])
 
   useEffect(() =>{
 
@@ -77,7 +74,7 @@ const RestaurantModal = (props) => {
             <p className="rest-details">{`${props.rest.city}, ${props.rest.country}`}</p>
             <p className="rest-details">{`${props.rest.type}`}</p>
             <div className="add-remove-buttons">
-              { checked && cardHovered && (
+              {checked && cardHovered && (
                 <button className="add" onClick={handleClick}>
                   <Icon
                     name="minus"
@@ -101,7 +98,13 @@ const RestaurantModal = (props) => {
           </Button>
         }
       >
-        <RestaurantInfo info = {props.rest}  setSavedRestaurants = {setSavedRestaurants} savedRestaurants = {savedRestaurants} setChecked = {setChecked} checked = {checked} setCardHovered = {setCardHovered}/>
+        <RestaurantInfo info = {props.rest}  
+                        setSavedRestaurants = {setSavedRestaurants} 
+                        savedRestaurants = {savedRestaurants} 
+                        setChecked = {setChecked} 
+                        checked = {checked} 
+                        setCardHovered = {setCardHovered} 
+                        visitedChecked = {visitedChecked} />
       </Modal>
     </div>
   );
